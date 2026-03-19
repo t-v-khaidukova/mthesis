@@ -4,75 +4,109 @@ from langchain.prompts import PromptTemplate
 
 
 CONCEPT_EXTRACTION_PROMPT = PromptTemplate(
-    input_variables=["statute"],
+    input_variables=["resource_text", "source_name", "source_type"],
     template="""
 # Instruction
 
-You are an expert legal AI assistant specializing in ontology engineering from legal texts.
-Your task is to analyze the provided segment of a legal statute and extract:
-1. **Candidate Classes (Legal Concepts/Entities)**: These are the fundamental nouns or noun phrases that represent key concepts in the legal domain described by the text.
-2. **Candidate Properties**: These define attributes of classes or relationships between classes.
+You are an expert linguistic AI assistant specializing in ontology engineering for low-resource languages from linguistic resources.
+Your task is to analyze the provided segment of a linguistic resource and extract:
+1. **Candidate Classes (Linguistic Concepts/Entities)**: These are the fundamental entities used in morphological and syntactic analysis (e.g., Sentence, Token, CandidateAnalysis, Lemma, Morpheme, FeatureBundle, PartOfSpeech, Case, Number, Person, Tense, Mood, DependencyRelation, AgreementPattern, GovernmentPattern, Construction, Postposition).
+2. **Candidate Properties**: These define attributes of classes or relationships between classes (e.g., hasForm, hasLemma, hasCandidatePOS, hasCandidateFeature, candidateOf, belongsToSentence, agreesWith, governsCase, hasSuffix, followsToken).
 
-Note! When multiple classes may be attributed to the same individual it causes ambiguity in the systems downstream.
-Thus, prefer to use the properties instead. e.g., in case a Person and a Taxpayer would aspire to be two classes,
-think that a Taxpayer must also be a person; instead define a class Person and a property isTaxpayer.
+The source may be:
+- a grammar textbook,
+- an annotation guideline,
+- analyzer documentation,
+- corpus notes,
+- or expert linguistic commentary.
 
-For each extracted item, provide a confidence score (0.0 to 1.0) and a brief explanation.
+# Important Modeling Principle
+
+The same surface token may participate in multiple alternative analyses. This causes ambiguity in downstream systems if represented incorrectly.
+Thus, prefer:
+- a base class such as `Token`,
+- and separate `CandidateAnalysis` entities linked to the token via a property such as `candidateOf`.
+
+Example:
+POOR:
+- Token1Noun
+- Token1Pronoun
+with no connection between them
+
+GOOD:
+- Token1 is a Token
+- Analysis1 is a CandidateAnalysis linked to Token1
+- Analysis2 is a CandidateAnalysis linked to Token1
+- properties encode the alternatives
+
+Also, prefer properties over duplicating overlapping classes when the same entity may bear multiple roles.
+
+For each extracted item, provide a confidence score (0.0 to 1.0), a brief explanation, and explicit provenance:
+- source_name,
+- source_type,
+- evidence from the input.
 
 # Important Context for Knowledge Application
 
 The ontology you create (TBox) will be used in two critical ways:
-1. To guide the extraction of case-specific facts (ABox) from user queries
-2. To structure Python code that will calculate exact numeric values (such as tax amounts)
+1. To guide the extraction of sentence-specific facts (ABox) from user queries, raw sentences, UniParser candidate analyses, corpus examples, and optional manual annotations.
+2. To structure Python code that will build a functional knowledge graph, apply constraints, and resolve morphological and syntactic ambiguity.
 
 Therefore, your extracted concepts should:
-- Be atomic/granular rather than composite (prefer "income" and "deduction" over "netIncome")
-- Avoid concepts that would require in-memory calculations
-- Focus on raw data points that Python code can later process
-- Enable precise calculations of numerical values as required by the examples below
+- Be atomic/granular rather than composite
+- Avoid concepts that already encode final disambiguation decisions
+- Focus on raw observable data points
+- Enable later rule-based reasoning
+- Support agreement, government, compatibility, and context-sensitive filtering
 
 # Example Use Cases
 
 Your ontology should support answering queries like:
-
+# ПОМЕНЯТЬ!!!
 Example 1:
-Description: Alice and Bob got married on Feb 3rd, 1992. Alice paid each of her 87 employees $5207 for work done in 2015. Alice paid each of her 70 employees $6341 for work done in 2016. Alice and Bob file jointly in 2015 and had no income. They take the standard deduction.
-Query: How much tax does Alice have to pay in 2015?
-Expected answer: 27181
+Sentence: A token has two candidate analyses, one accusative and one genitive.
+Goal: The ontology should support representing both candidates separately so later rules can eliminate the incompatible one.
 
 Example 2:
-Description: Alice was paid $1200 in 2019 for services performed in jail. Alice was committed to jail from January 24, 2015 to May 5th, 2019. From May 5th 2019 to Dec 31st 2019, Alice was paid $5320 in remuneration. Alice takes the standard deduction.
-Query: How much tax does Alice have to pay in 2019?
-Expected answer: 0
+Resource text says that a certain postposition requires instrumental case.
+Goal: Extract entities and properties that allow later reasoning over government.
 
 Example 3:
-Description: Alice and Bob got married on Feb 3rd, 1998, and have a son Charlie, born April 1st, 1999. Bob died on Jan 1st, 2017. In 2019, Charlie lives at the house that Alice maintains as her principal place of abode. Alice's gross income for the year 2019 is $236422. Alice takes the standard deduction.
-Query: How much tax does Alice have to pay in 2019?
-Expected answer: 62000
-
-Example 4:
-Description: Alice and Bob got married on November 23rd, 1994. Their son Charlie was born on July 5th, 2000. Bob died on March 15th, 2015. In 2017, Alice and Charlie lived in a house maintained by Alice. Alice's gross income for the year 2017 is $95129. Alice takes the standard deduction.
-Query: How much tax does Alice have to pay in 2017?
-Expected answer: 19039
+Resource text says that plural is marked by different suffixes depending on phonological context.
+Goal: Extract raw concepts such as suffix, stem-final sound class, and plural marking, not the final disambiguated analysis.
 
 # Extraction Guidelines
 
 When extracting classes and properties:
 
-1. For **Classes**: Focus on fundamental legal entities mentioned in the statute (e.g., Taxpayer, Income, Employer).
-   - Prefer atomic concepts that represent basic units of information
-   - Consider what entities would appear in an ABox for the example cases above
+1. For **Classes**:
+   - Focus on fundamental linguistic entities
+   - Prefer reusable concepts over corpus-example-specific names
+   - Think about what entities must appear in the ABox for sentence analysis
 
 2. For **Properties**:
-   - Extract relationships between entities (e.g., HasSpouse, EmploysIndividual)
-   - Extract attributes that are intrinsic to entities (e.g., FilingStatus, WageAmount)
-   - For numeric values mentioned in the statute (wages amounts, income thresholds), extract datatype properties that capture the raw values WITHOUT encoding any judgments about thresholds
-   - Include properties that will be needed by Python code to perform calculations (e.g., NumberOfEmployees, WagePerEmployee, DateOfMarriage)
+   - Extract relations between entities (e.g., candidateOf, belongsToSentence, agreesWith)
+   - Extract intrinsic attributes (e.g., hasForm, hasLemma, hasCase, hasNumber)
+   - For linguistic values, prefer raw features over bundled interpretations
+   - Include properties that will be needed by Python code to build a functional knowledge graph
 
-3. Do NOT create categorical properties that encode numeric thresholds or calculations
-   - AVOID: properties like "MeetsWageThreshold", "TotalIncome", or "TaxAmount" that would require calculations
-   - PREFER: raw properties like "WageAmount", "IncomeAmount" that code can use for calculations
+3. Do NOT create properties that already encode final system decisions
+   - AVOID: isBestAnalysis, resolvedHead, preferredFinalCase
+   - PREFER: hasCandidateCase, hasCandidatePOS, hasDependencyCandidate, hasSuffix
 
+4. Remember that Python code will later implement filtering of incompatible candidates, source-aware preference resolution, construction of graph-based reasoning state.
+
+5. When the source explicitly provides complementary linguistic oppositions
+   (e.g., finite vs non-finite, singular vs plural, animate vs inanimate),
+   preserve them when useful.
+   Do NOT invent artificial negations that are not supported by the source.
+
+6. Every extracted item must be traceable to the provided source segment.
+   Do not invent unsupported concepts.
+
+# Я ЗДЕСЬ
+
+When extracting classes and properties:
 4. Remember that Python code will later implement all calculations based on your ontology, so focus on capturing the raw data points that such code would need to calculate tax amounts for cases like the examples above.
 
 5. The research has shown, that offering LLMs complementary predicates, forces LLMs to choose and gives better results, thus for every property, make sure to offer the negation, e.g., isBlind has a complementary isNotBlind.
