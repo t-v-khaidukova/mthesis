@@ -112,63 +112,87 @@ When extracting classes and properties:
 
 6. Every extracted item must be traceable to the provided source segment. Do not invent unsupported concepts.
 
-# Я ЗДЕСЬ
+# Input Resource Metadata
 
-When extracting classes and properties:
-4. Remember that Python code will later implement all calculations based on your ontology, so focus on capturing the raw data points that such code would need to calculate tax amounts for cases like the examples above.
+Source name: {{ source_name }}
+Source type: {{ source_type }}
 
-5. The research has shown, that offering LLMs complementary predicates, forces LLMs to choose and gives better results, thus for every property, make sure to offer the negation, e.g., isBlind has a complementary isNotBlind.
+# Input Resource Text
 
-CRITICAL: Entities in legal contexts often serve multiple roles simultaneously (e.g., a person can be both a "Taxpayer" AND an "Employer"). 
-Your ontology should:
-- Create appropriate relationship properties to connect these roles (e.g., "hasEmployerRole")
-- OR define class hierarchies that allow inheritance of multiple characteristics
-- AVOID creating disconnected entities for the same underlying individual
-
-EXAMPLE:
-POOR: Define "Alice" as "Taxpayer" and "AliceEmployer" as "Employer" with no connection
-GOOD: Define "Alice" as "Taxpayer" with property "isAlsoEmployer(Alice, True)"
-
-# Input Statute
-
-{statute}
+{{ resource_text }}
 
 # Output Format
 
 Return a single, valid JSON object that strictly adheres to the following structure. Do NOT include any markdown formatting (e.g., ```json) around the JSON object itself.
 
 ```json
-{{
+{
   "classes": [
-    {{
-      "object": {{
+    {
+      "object": {
         "name": "ClassNameInPascalCase",
         "description": "Concise description of the class."
-      }},
+      },
       "confidence": 0.9,
+      "source": {
+        "source_name": "{{ source_name }}",
+        "source_type": "{{ source_type }}",
+        "evidence": "Short supporting fragment or paraphrase from the resource."
+      },
       "explanation": "Reason for extracting this class and determining its fields."
-    }}
+    }
   ],
   "properties": [
-    {{
-      "object": {{
+    {
+      "object": {
         "type": "unary_or_object_or_datatype",
         "name": "propertyNameInCamelOrPascalCase",
         "arguments": ["Arg1", "Arg2_if_applicable"],
         "description": "Concise description of the property."
-      }},
+      },
       "confidence": 0.85,
+      "source": {
+        "source_name": "{{ source_name }}",
+        "source_type": "{{ source_type }}",
+        "evidence": "Short supporting fragment or paraphrase from the resource."
+      },
       "explanation": "Reason for extracting this property, its type, arguments, and other fields."
-    }}
+    }
   ]
-}}
+}
 ```
 
 Detailed Field Explanations for the "object" within "properties":
 
+- type: one of "unary", "object", or "datatype"
+    - unary: characteristic of one class
+    - object: relation between two classes
+    - datatype: attribute with a literal value
+
+- name: descriptive name in camelCase or PascalCase
+
+- arguments:
+    - unary -> ["ClassName"]
+    - object -> ["DomainClassName", "RangeClassName"]
+    - datatype -> ["DomainClassName", "LiteralType"]
+
+- Literal types may include:
+  string, integer, decimal, boolean, date
+
+Ensure all class and property names are descriptive and consistently cased.
+Focus on concepts directly supported by the provided resource text.
+If nothing relevant can be extracted confidently, return an empty list.
+The overall JSON must be valid.
+""",
+)
+
+# Я ЗДЕСЬ
+
+Detailed Field Explanations for the "object" within "properties":
+
 * **type**: Must be one of "unary", "object", or "datatype".
-    - "unary": Represents a characteristic of a single class (e.g., IsTaxpayer). arguments will be
-      a list with one string: the class name it applies to (e.g., ["Taxpayer"]).
+    - "unary": Represents a characteristic of a single class (e.g., IsNoun). arguments will be
+      a list with one string: the class name it applies to (e.g., ["Noun"]).
     - "object": Represents a relationship between two classes (e.g., hasSpouse). arguments will be
       a list of two strings: ["DomainClassName", "RangeClassName"] (e.g., ["Person", "Person"]).
     - "datatype": Represents an attribute of a class with a literal value (e.g., hasIncomeAmount).
@@ -176,7 +200,7 @@ Detailed Field Explanations for the "object" within "properties":
       ["Income", "decimal"], ["Person", "integer"], ["LegalDocument", "date"]). Literal types can include
       string, integer, decimal, boolean and date.
 
-* **name**: The name of the property. Use camelCase or PascalCase (e.g., isTaxpayer, HasIncomeAmount).
+* **name**: The name of the property. Use camelCase or PascalCase (e.g., isNoun, HasGender).
 
 * **arguments**: A list of strings as described above, depending on the property type. These should
   refer to Class names defined in classes or common literal types.
