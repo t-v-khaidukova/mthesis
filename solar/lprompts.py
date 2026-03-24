@@ -106,15 +106,11 @@ When extracting classes and properties:
    - AVOID: isBestAnalysis, resolvedHead, preferredFinalCase
    - PREFER: hasCandidateCase, hasCandidatePOS, hasDependencyCandidate, hasSuffix
 
-4. Remember that Python code will later implement filtering of incompatible candidates, source-aware preference resolution, construction of graph-based reasoning state.
+4. Remember that Python code will later implement all disambiguation procedures based on your ontology, so focus on capturing the raw linguistic data points that such code would need to resolve morphological and syntactic ambiguity for cases like the examples above.
 
-5. When the source explicitly provides complementary linguistic oppositions
-   (e.g., finite vs non-finite, singular vs plural, animate vs inanimate),
-   preserve them when useful.
-   Do NOT invent artificial negations that are not supported by the source.
+5. When the source explicitly provides complementary linguistic oppositions (e.g., finite vs non-finite, singular vs plural, animate vs inanimate), preserve them when useful. Do NOT invent artificial negations that are not supported by the source.
 
-6. Every extracted item must be traceable to the provided source segment.
-   Do not invent unsupported concepts.
+6. Every extracted item must be traceable to the provided source segment. Do not invent unsupported concepts.
 
 # Я ЗДЕСЬ
 
