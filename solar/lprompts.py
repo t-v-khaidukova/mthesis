@@ -62,18 +62,30 @@ Therefore, your extracted concepts should:
 # Example Use Cases
 
 Your ontology should support answering queries like:
-# ПОМЕНЯТЬ!!!
+
 Example 1:
-Sentence: A token has two candidate analyses, one accusative and one genitive.
-Goal: The ontology should support representing both candidates separately so later rules can eliminate the incompatible one.
+Description: Sentence: Кин ке но пилиське...
+The token "пилиське" has two candidate analyses: PASS|IMP|PL and PASS|PRS|3SG.
+Query: Which analysis should be selected for the token "пилиське"?
+Expected answer: PASS|PRS|3SG
 
 Example 2:
-Resource text says that a certain postposition requires instrumental case.
-Goal: Extract entities and properties that allow later reasoning over government.
+Description: Sentence: Атай, сое.
+The token "сое" is annotated as a case-marked form with accusative morphology.
+Query: What case should be assigned to the token "сое"?
+Expected answer: Case=Acc
 
 Example 3:
-Resource text says that plural is marked by different suffixes depending on phonological context.
-Goal: Extract raw concepts such as suffix, stem-final sound class, and plural marking, not the final disambiguated analysis.
+Description: Sentence: куддыр потэ ноку уз быр.
+The token "потэ" has two candidate analyses: PRS|3SG and IMP|PL.
+Query: Which analysis is compatible with a declarative finite-clause reading?
+Expected answer: PRS|3SG
+
+Example 4:
+Description: Sentence: Мыным туж ӝож луэ, ку мон малпасько Шундыкар сярысь.
+The token "малпасько" has three candidate analyses: PASS|PRS|3PL, PASS|FUT, and PRS|12.
+Query: Which candidate analyses should remain after applying agreement and clause-context constraints?
+Expected answer: retain only the candidates compatible with the local subject and clause structure; if more than one remains, report unresolved ambiguity.
 
 # Extraction Guidelines
 
