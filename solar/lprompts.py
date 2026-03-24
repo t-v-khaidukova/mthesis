@@ -79,7 +79,7 @@ Example 3:
 Description: Sentence: куддыр потэ ноку уз быр.
 The token "потэ" has two candidate analyses: STEM-PRS.3SG and STEM-IMP.PL.
 Query: Which analysis is compatible with a declarative finite-clause reading?
-Expected answer: PRS|3SG
+Expected answer: PRS.3SG
 
 Example 4:
 Description: Sentence: Мыным туж ӝож луэ, ку мон малпасько Шундыкар сярысь.
