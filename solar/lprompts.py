@@ -65,27 +65,27 @@ Your ontology should support answering queries like:
 
 Example 1:
 Description: Sentence: Кин ке но пилиське...
-The token "пилиське" has two candidate analyses: PASS|IMP|PL and PASS|PRS|3SG.
+The token "пилиське" has two candidate analyses: STEM-PASS-IMP.PL and STEM-PASS-PRS.3SG.
 Query: Which analysis should be selected for the token "пилиське"?
-Expected answer: PASS|PRS|3SG
+Expected answer: STEM-PASS-PRS.3SG
 
 Example 2:
 Description: Sentence: Атай, сое.
 The token "сое" is annotated as a case-marked form with accusative morphology.
 Query: What case should be assigned to the token "сое"?
-Expected answer: Case=Acc
+Expected answer: Case=ACC
 
 Example 3:
 Description: Sentence: куддыр потэ ноку уз быр.
-The token "потэ" has two candidate analyses: PRS|3SG and IMP|PL.
+The token "потэ" has two candidate analyses: STEM-PRS.3SG and STEM-IMP.PL.
 Query: Which analysis is compatible with a declarative finite-clause reading?
 Expected answer: PRS|3SG
 
 Example 4:
 Description: Sentence: Мыным туж ӝож луэ, ку мон малпасько Шундыкар сярысь.
-The token "малпасько" has three candidate analyses: PASS|PRS|3PL, PASS|FUT, and PRS|12.
+The token "малпасько" has three candidate analyses: STEM-PASS-PRS.3PL, STEM-PASS-FUT, and STEM-PRS.12.
 Query: Which candidate analyses should remain after applying agreement and clause-context constraints?
-Expected answer: retain only the candidates compatible with the local subject and clause structure; if more than one remains, report unresolved ambiguity.
+Expected answer: STEM-PRS.12
 
 # Extraction Guidelines
 
