@@ -186,7 +186,7 @@ The overall JSON must be valid.
 """,
 )
 
-# Я ЗДЕСЬ
+# ПОМЕНЯТЬ
 
 Detailed Field Explanations for the "object" within "properties":
 
@@ -215,78 +215,95 @@ The overall JSON must be valid.
 """,
 )
 
+# Я ЗДЕСЬ
 
 RULE_FORMULATION_PROMPT: Final[PromptTemplate] = PromptTemplate(
-    input_variables=["statute"],
+    input_variables=["resource_text", "source_name", "source_type"],
     template="""
 # Instruction
 
-You are an expert legal AI assistant specializing in extracting logical rules for ontology engineering from legal texts.
-Your task is to analyze the provided segments of a legal statute to extract logical rules that represent the core logical relationships between concepts, WITHOUT encoding any numeric thresholds or calculations.
+You are an expert linguistic AI assistant specializing in extracting logical rules for ontology engineering from linguistic resources for low-resource languages.
+Your task is to analyze the provided segment of a linguistic resource and extract candidate logical rules that can support morphological and syntactic disambiguation.
 
-Each rule defines a new property (the implication) based on a set of conditions (the FOL expression/premises).
+Each rule defines a new property (the implication) based on a set of linguistic conditions (the FOL expression/premises). The rule should describe a reusable linguistic regularity, not a one-off annotation decision.
 
 # Important Direction
-- Focus ONLY on extracting logical relationships between concepts
-- DO NOT create rules that encode numeric thresholds or calculations
-- Extract rules about what entities ARE, not whether they MEET CRITERIA
-- Numeric calculations and threshold checks will be handled separately by Python code
-- Do not produce single predicate rules
+- Focus on extracting linguistic relationships that can help resolve ambiguity: agreement, government, compatibility of features, clause context, syntactic position, dependency relations, finiteness, polarity, tense/mood compatibility, and postpositional/case patterns
+- Do NOT create rules that encode final labels directly without conditions
+- Do NOT create single-predicate rules
+- Do NOT invent rules unsupported by the source segment
+- Prefer rules that can later be converted into SWRL-like rules or checked as ontology constraints.
+- If the source only provides examples and no general rule can be inferred confidently, return an empty list.
 
-# Input Statute
+# Input Resource Metadata
 ```
-{statute}
+Source name: {source_name}
+Source type: {source_type}
+```
+# Input Resource Text
+```
+{resource_text}
 ```
 
 # Task
 
-Extract logical rules that define core conceptual relationships. For each rule:
--   `fol_expression`: Write the First-Order Logic (FOL) expression representing the **premises (conditions) only**.
-    -   The expressions will be interpreted by NLTK SMT solver (python package nltk.sem.logic)
-    -   Focus on relationships like "IsEmployer(X) & HasEmployee(X, Y)" rather than threshold conditions
-    -   DO NOT include numeric comparisons in rules (>, <, >=, etc.)
-    -   DO NOT create predicates that encode thresholds (e.g., avoid "MeetsWageThreshold")
--   `implication_property_name`: Specify the name (PascalCase) of the **NEW property** that is true if the `fol_expression` is true. This property is introduced by this rule.
--   `implication_property_type`: Specify the type of the **NEW property** - one of 'unary' / 'object' / 'datatype'.
--   `implication_property_arguments`: Provide a list of plausible Class names (e.g., `["Taxpayer"]`, `["Person", "Benefit"]`) that are the arguments for the `implication_property_name`. These class names should be general concepts identifiable from the text.
--   `description`: Write a concise English description of the rule, explaining what conditions lead to what implication.
--   Provide a `confidence` score (0.0 to 1.0) and an `explanation` for the entire rule extraction, including why you chose certain predicate or class names.
-- You must extract rules that properly handle entities with multiple roles. For example:
-    - if "Taxpayer(X) & isAlsoEmployer(X, True) & EmployerPaysTax(X, T) → MustPayTax(X, T)"
-    - if "Person(X) & Employer(X) & HasEmployeeCount(X, N) & N > 0 → SubjectToExciseTax(X)"
+Extract logical rules that define reusable linguistic relationships. For each rule:
+
+- `fol_expression`: Write the First-Order Logic (FOL) expression representing the **premises (conditions) only** only.
+  Use predicates that correspond to explicit properties likely to exist in the ontology.
+  Examples:
+  - "CandidateOf(A, T) & HasCandidatePOS(A, Verb) & HasCandidateTense(A, Present) & InDeclarativeClause(T, C)"
+  - "CandidateOf(A, T) & HasCandidateCase(A, Accusative) & GovernedBy(T, V) & GovernsCase(V, Accusative)"
+  - "CandidateOf(A, T) & HasCandidateNumber(A, Singular) & AgreesWith(T, H) & HasNumber(H, Singular)"
+- `implication_property_name`: Specify the name of the **NEW property** that is true if the `fol_expression` is true. This property is introduced by this rule.
+  Examples:
+  - "ContextuallyCompatibleAnalysis"
+  - "GovernedCaseCompatibleAnalysis"
+  - "AgreementCompatibleAnalysis"
+- `implication_property_type`: Specify the type of the **NEW property** - one of 'unary' / 'object' / 'datatype'.
+- `implication_property_arguments`: Provide a list of plausible Class names that are the arguments for the `implication_property_name`. For most disambiguation rules, a unary property over CandidateAnalysis is sufficient: ["CandidateAnalysis"].
+- `description`: Explain the linguistic motivation of the rule.
+- Provide a `confidence` score (0.0 to 1.0) and an `explanation` for the entire rule extraction, including why you chose certain predicate or class names and the evidence from the source segment.
 
 # Examples of What to Extract and What to Avoid
 
-## GOOD EXAMPLES (focus on conceptual relationships):
-- "IsMarriedIndividual(X) & FilesJointReturn(X)" → "QualifiesForJointFilingStatus(X)"
-- "Individual(X) & HasDependent(X, Y)" → "MayQualifyAsHeadOfHousehold(X)"
+GOOD EXAMPLES (focus on conceptual relationships):
+- "CandidateOf(A, T) & HasCandidatePOS(A, Verb) & InFiniteClause(T, C) & HasCandidateMood(A, Indicative)"
+  -> "FiniteClauseCompatibleAnalysis(A)"
+- "CandidateOf(A, T) & HasCandidateCase(A, Accusative) & GovernedBy(T, H) & GovernsCase(H, Accusative)"
+  -> "GovernmentCompatibleAnalysis(A)"
 
-## BAD EXAMPLES (numeric thresholds that should be handled by code):
-- "HasWages(X, W) & WageAmount(W, A) & A >= 1500" → "IsEmployer(X)"
-- "Individual(X) & HasTaxableIncome(X, I) & AmountIs(I, A) & A <= 36900" → "InFirstTaxBracket(X)"
-- "IsFoo(X) -> IsBar(X)"
+BAD EXAMPLES (numeric thresholds that should be handled by code):
+- "HasCandidatePOS(A, Noun)" -> "IsBestAnalysis(A)"
+  Reason: single-predicate and directly encodes a final decision.
+- "Token(T)" -> "ResolvedToken(T)"
+  Reason: no linguistic condition.
 
 Instead, simply extract rules about what entities ARE and their relationships. The Python code will handle all numeric comparisons and threshold checks.
 
 # Output Format
 
-Return a single, valid JSON object that strictly adheres to the following structure. Do NOT include any markdown formatting (e.g., ```json) around the JSON object itself.
+Return a single, valid JSON object that strictly adheres to the following structure. Do NOT include markdown formatting (e.g., ```json) around the JSON object itself.
 
 ```json
 {{
   "rules": [
     {{
       "object": {{
-        "fol_expression": "IsTaxpayer(X) & HasIncome(X, I)",
-        "implication_property_name": "MustFileReturn",
+        "fol_expression": "CandidateOf(A, T) & HasCandidateCase(A, Accusative) & GovernedBy(T, H) & GovernsCase(H, Accusative)",
+        "implication_property_name": "GovernmentCompatibleAnalysis",
         "implication_property_type": "unary",
-        "implication_property_arguments": ["Person"],
-        "description": "If Person is a taxpayer and has income must file a tax return."
+        "implication_property_arguments": ["CandidateAnalysis"],
+        "description": "A candidate analysis is compatible if its case feature matches the case governed by its syntactic head."
       }},
-      "confidence": 0.9,
-      "explanation": "Rule derived from text stating high-income taxpayers must file. 'IsTaxpayer', 'HasIncome' and 'Taxpayer' (for argument) are inferred as plausible concepts. 'MustFileReturn' is a new property implied by these conditions."
+      "confidence": 0.85,
+      "source": {{
+        "source_name": "{source_name}",
+        "source_type": "{source_type}",
+        "evidence": "Short supporting fragment or paraphrase from the resource."
+      }},
+      "explanation": "The rule is derived from the source statement that a governor imposes a case requirement on its dependent."
     }}
-    // ... more rules
   ]
 }}
 ```
@@ -295,7 +312,6 @@ If no rules can be confidently extracted, return an empty list for "rules".
 The overall JSON must be valid.
 """,
 )
-
 
 RULE_INTEGRATION_PROMPT: Final[PromptTemplate] = PromptTemplate(
     input_variables=[
