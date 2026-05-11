@@ -1,0 +1,577 @@
+# Udmurt Language: Morphological and Syntactic Grammar Resource
+# For Ontological Disambiguation of Morphological Analyses
+#
+# This document describes the morphological and syntactic properties of the
+# Udmurt language as used in the UniParser-udm annotation system.
+# Tag notation follows the UniParser-udm tagset (Arkhangelskiy, 2016):
+#   https://github.com/timarkh/uniparser-grammar-udm
+#
+# Purpose: to support morphological disambiguation of ambiguous token analyses
+# produced by UniParser. Each section describes linguistic categories, their
+# features, and constraints that help select the correct analysis when a token
+# has multiple candidates separated by '||' in parser output.
+
+
+# =============================================================================
+# 1. TYPOLOGICAL OVERVIEW
+# =============================================================================
+
+Udmurt is an agglutinative Uralic language of the Permic branch, spoken in
+the Udmurt Republic of Russia. It has SOV (Subject-Object-Verb) basic word
+order, though word order is relatively free due to rich morphological marking.
+Udmurt is a head-final language: postpositions follow their nouns, and
+subordinate clauses precede their matrix clause.
+
+Morphological categories are expressed by suffixes that attach to a stem (STEM).
+Every analyzed token in the corpus begins with STEM in the tag sequence,
+followed by morphological suffixes separated by hyphens: STEM-SUFFIX1-SUFFIX2.
+
+Udmurt lacks grammatical gender. Number is marked on nouns and verbs.
+There is no definite/indefinite article.
+
+
+# =============================================================================
+# 2. PART-OF-SPEECH CATEGORIES AND THEIR DIAGNOSTIC SUFFIXES
+# =============================================================================
+
+2.1 VERBS
+
+Verbs in Udmurt are identified by tense/mood/person suffixes.
+
+A token bears a verbal analysis when its tag contains any of the following:
+- Tense markers: PST (past), PRS (present), FUT (future)
+- Mood markers: IMP (imperative), DEB (debitive/necessitative)
+- Verbal noun suffix: VN (-он/-ён: action nominalizations)
+- Converb suffix: CVB (-са: simultaneous or sequential action)
+- Infinitive suffix: INF (-ыны/-ини)
+- Participle suffixes: PTCP.ACT (active, -ись), PTCP.PST (past passive, -эм/-ем)
+- Evidential: EVID (-эм/-ем when used as a mirative/inferential past)
+
+IMPORTANT DISAMBIGUATION NOTE (verbs vs. nouns):
+The suffix -эм/-ем is AMBIGUOUS between:
+  (a) PTCP.PST (past passive participle, modifying a noun: "done X", "made X")
+  (b) EVID (evidential past tense: speaker did not witness the event)
+  (c) STEM alone if the form is a lexicalized noun
+Context rule: if the token precedes a noun and modifies it, prefer PTCP.PST.
+If the token is clause-final and the clause lacks an auxiliary, prefer EVID.
+If the token is accompanied by a copula (луыны), prefer PTCP.PST-LOC (result state).
+
+2.2 NOUNS AND NOMINAL FORMS
+
+Nouns are identified by case suffixes or by bare STEM (nominative).
+A token has a nominal analysis when its tag contains:
+- Case suffixes: GEN, DAT, ACC, ILL, LOC, EL, ABL, INS, ADV, PROL, DELIM
+- Plural suffix: PL
+- Possessive suffixes: P.1SG, P.2SG, P.3SG, P.1PL, P.2PL, P.3PL
+- Ordinal: ORD (for numerals: -этӥ/-тӥ)
+- Comparative: COMP (-гес)
+- Attributive: ATTR (-о/-ё)
+- Bare STEM without verbal suffixes = nominative singular noun or uninflected form
+
+2.3 POSTPOSITIONS
+
+Postpositions in Udmurt often derive from nouns with locative cases.
+They govern specific cases on their nominal complements.
+Disambiguation: a form tagged both as STEM (noun) and STEM-INS (postposition)
+should be resolved by checking whether a nominal complement precedes it.
+Example: "сэрен" can be STEM (adverb 'because') or STEM-INS (postposition 'because of').
+If a genitive-marked noun precedes it, prefer the postpositional reading.
+
+2.4 PARTICLES, CONJUNCTIONS, ADVERBS
+
+Words tagged as bare STEM with no inflectional suffixes are typically:
+- Adverbs: татын (here), отын (there), али (now), ни (already), уката (more)
+- Conjunctions: но (and/also), нош (but/and), ук (emphatic), дыр (evidential particle)
+- Particles: ке (if/conditional), ӝик (comparative particle)
+These are uninflected and do not participate in agreement or government.
+Their analysis is always unambiguous (single STEM tag).
+
+
+# =============================================================================
+# 3. VERBAL MORPHOLOGY AND DISAMBIGUATION RULES
+# =============================================================================
+
+3.1 TENSE SYSTEM
+
+Present tense (PRS):
+  - PRS.3SG: 3rd person singular present, suffix -э/-е
+  - PRS.3PL: 3rd person plural present, suffix -о
+  - PRS.12: covers both 1st and 2nd person present (polypersonal form), suffix -ськ-о/-ськ-е
+  Tag PRS.12 appears when the form is ambiguous between 1SG and 2SG present.
+
+Past tense (PST):
+  - PST-3SG: 3rd person singular past, suffix -и-з / -(э)з
+  - PST-3PL: 3rd person plural past, suffix -и-зы
+  - PST-1PL: 1st person plural past, suffix -и-м
+  - PST-1SG: 1st person singular past, suffix -и
+
+Future tense (FUT):
+  - FUT-3SG: 3rd person singular future, suffix -о-з
+  - FUT-3PL: 3rd person plural future, suffix -о-зы
+  Future and present plural forms are sometimes homophonous.
+  DISAMBIGUATION: FUT-3SG (-оз) vs. PRS.3SG (-э) are distinct phonologically.
+  FUT-3PL (-озы) vs. PRS.3PL (-о) disambiguation depends on the suffix vowel.
+  In context, future is preferred in purposive clauses with infinitives and
+  in clauses expressing scheduled or intended events.
+
+Debitive mood (DEB):
+  The debitive expresses obligation or necessity: "must, should, ought to".
+  Tag: STEM-DEB, suffix -оно/-ёно.
+  The debitive form is a verbal noun used predicatively.
+  DISAMBIGUATION: DEB forms often co-occur with a copula (луыны, луоз),
+  but can appear as predicates alone. If the token ends in -оно and functions
+  as the main predicate of a clause, prefer DEB over any nominal reading.
+
+Imperative mood (IMP):
+  - IMP.SG: 2nd person singular imperative (bare stem or stem with -э/-е)
+  - IMP.PL: 2nd person plural imperative, suffix -э/-е + plural
+
+CRITICAL DISAMBIGUATION: STEM-PST-3SG vs. STEM-IMP.PL
+  The 2nd plural imperative form and certain past 3SG forms can be homophonous.
+  Rule: In declarative affirmative clauses with an expressed subject (3rd person
+  noun or pronoun), prefer PST-3SG. Imperative is only appropriate in
+  commands/requests addressed to 2nd person interlocutors, typically in
+  clause-initial position without an overt 3rd-person subject.
+  Example: "Революция кутскиз" → subject "революция" (3SG noun) forces PST-3SG,
+  not IMP.PL.
+
+3.2 VOICE: PASSIVE AND CAUSATIVE
+
+Passive voice (PASS):
+  The passive is formed with the suffix -ськ- (-sk-) inserted between the
+  stem and personal endings.
+  Tag notation: STEM-PASS-TENSE-PERSON (e.g., STEM-PASS-PST-3SG)
+  The passive construal requires that the notional agent is demoted (absent or
+  in instrumental case). The surface subject is the notional patient.
+
+CRITICAL DISAMBIGUATION: STEM-PST-3SG vs. STEM-PASS-PST-3SG
+  Both share the same personal ending -з (3SG past).
+  Selection rule:
+  1. If the subject NP is a typical agent (animate, volitional) and the verb
+     is transitive, prefer the active STEM-PST-3SG analysis.
+  2. If the verb stem is inherently intransitive (e.g., кутскыны 'to begin',
+     потыны 'to come out'), the passive reading is semantically anomalous —
+     prefer the active reading STEM-PST-3SG.
+  3. If the verb stem is transitive (e.g., кутыны 'to take', верыны 'to say')
+     AND the surface subject is patientive (inanimate or theme-role), prefer
+     STEM-PASS.
+  4. The suffix -ськ- also derives middle/reflexive/intransitive verbs from
+     transitive bases. These should be treated as lexically intransitive and
+     their personal endings parsed as active voice.
+
+Causative voice (CAUS):
+  The causative is formed with suffix -т-/-ыт- between stem and endings.
+  Tag: STEM-CAUS-TENSE-PERSON
+  The causative implies that the subject causes another agent to perform the action.
+  Disambiguation: CAUS forms are rarer; prefer CAUS only when a causer-causee
+  relationship is semantically plausible.
+
+3.3 ITERATIVE ASPECT
+
+The iterative suffix -ыл-/-ул- marks repeated or habitual actions.
+Tag: STEM-ITER-TENSE-PERSON
+The iterative is unambiguous in most contexts. When a form has both iterative
+and non-iterative candidates, prefer iterative if contextual adverbs of
+frequency are present (уно 'many times', котькуд 'every', пол 'time/occasion').
+
+3.4 NON-FINITE VERB FORMS
+
+Infinitive (INF): suffix -ыны/-ини
+  Used in complement clauses of modal verbs and in purposive constructions.
+  Infinitives follow the governing verb: быгатыны (to be able) + INF.
+  DISAMBIGUATION: If the token ends in -ыны and follows a modal or control verb,
+  prefer INF over any other reading.
+
+Converb (CVB): suffix -са
+  Expresses simultaneous or immediately preceding action relative to the
+  main verb. The converb shares its subject with the main verb.
+  If a token ends in -са and a finite verb follows in the same clause,
+  prefer CVB.
+
+Active participle (PTCP.ACT): suffix -ись/-ысь
+  Functions as an adjectival modifier (pre-nominal) or as a nominalized agent.
+  DISAMBIGUATION: PTCP.ACT vs. bare STEM (nouns in -ись):
+  If the token modifies a following noun, prefer PTCP.ACT.
+  If the token is in argument position without a modified noun, it may be
+  a lexicalized agent noun (nominalization); treat as Noun.
+
+Past passive participle (PTCP.PST): suffix -эм/-ем
+  Functions as an adjectival modifier expressing a completed action/state.
+  Also used in perfect/resultative periphrastic constructions with луыны.
+
+Verbal noun (VN): suffix -он/-ён
+  Nominalizes the verbal action. Takes case suffixes: STEM-VN-DAT, STEM-VN-ADV.
+  Functions as a noun in argument positions or in adverbial constructions.
+  STEM-VN-ADV (adverbial verbal noun): expresses manner or circumstance.
+
+
+# =============================================================================
+# 4. NOMINAL MORPHOLOGY AND CASE SYSTEM
+# =============================================================================
+
+4.1 CASE INVENTORY
+
+Udmurt has 15 cases. The cases relevant to disambiguation in the corpus are:
+
+Nominative: unmarked (bare STEM). Subject of a finite clause.
+Genitive (GEN): suffix -лэн/-лэсь/-лэн; possessor or complement of postpositions.
+  NOTE: GEN and ABL share the same marker -лэсь in some analyses.
+Dative (DAT): suffix -лы; indirect object, beneficiary, goal.
+Accusative/Illative (ACC/ILL): suffix -эз/-ез (singular object), -ты/-тэ (plural).
+  The ACC and ILL are HOMOPHONOUS in many forms.
+  DISAMBIGUATION: ACC marks the direct object of a transitive verb.
+  ILL marks motion toward a location (into, to).
+  Rule: If the governing verb is a verb of motion (вуыны 'arrive', мыныны 'go',
+  лыктыны 'come'), prefer ILL. If the governing verb is transitive and takes
+  a patient, prefer ACC.
+Illative (ILL): suffix -э/-е (locative-directional: 'into, to').
+  Distinct from ACC-ILL in that it marks only directional semantics.
+Locative/Inessive (LOC): suffix -ын; location ('in, at, on').
+Elative (EL): suffix -ысь; source location ('from, out of').
+Ablative (ABL): suffix -лэсь; source of comparison, ablative of separation.
+Instrumental (INS): suffix -эн/-ен; instrument, comitative, means.
+Adverbial (ADV): suffix -я; manner, domain, topic ('about', 'according to').
+Prolative (PROL): suffix -этӥ/-тӥ; path ('along, through').
+Approximative: suffix -лань; direction ('toward').
+Egressive: suffix -ысен; starting point in time/space.
+Caritive: suffix -тэк; absence ('without').
+Terminative: suffix -озь; limit ('until, up to').
+Delimitative (DELIM): suffix -джык; approximative or delimitative reading.
+
+4.2 POSSESSIVE SUFFIXES
+
+Possessive suffixes attach after case suffixes:
+  P.1SG (-е/-й): my
+  P.2SG (-эд/-ед): your (sg)
+  P.3SG (-эз/-ез): his/her/its — MOST COMMON, FREQUENT SOURCE OF AMBIGUITY
+  P.1PL (-мы): our
+  P.2PL (-ды): your (pl)
+  P.3PL (-зы): their
+
+DISAMBIGUATION: P.3SG suffix -эз/-ез is homophonous with ACC/ILL object suffix.
+  Rule: If the head noun has a genitive-marked possessor preceding it, prefer P.3SG.
+  If the noun is in direct object position with a transitive verb and no
+  possessor is expressed, prefer ACC.
+
+4.3 PLURAL
+
+Plural suffix -ос/-ёс (PL) attaches before case and possessive suffixes.
+Plural is unambiguous except when combined with other suffixes that may create
+homophony.
+
+
+# =============================================================================
+# 5. AGREEMENT AND GOVERNMENT
+# =============================================================================
+
+5.1 SUBJECT-VERB AGREEMENT
+
+In Udmurt, finite verbs agree with their subject in person and number.
+
+Agreement rules:
+- A 3rd person singular subject (noun phrase without plural marking) requires
+  a 3SG verb form: PST-3SG, PRS.3SG, or FUT-3SG.
+- A 3rd person plural subject (noun with PL suffix or plural pronoun) requires
+  a 3PL verb form: PST-3PL, PRS.3PL, or FUT-3PL.
+- A 1st or 2nd person pronoun (мон 'I', тон 'you', ми 'we', тӥ 'you.PL')
+  requires the corresponding person agreement on the verb.
+- The special tag PRS.12 covers forms ambiguous between 1SG and 2SG.
+  If the subject is мон (1SG), prefer the interpretation as 1SG present.
+  If the subject is тон (2SG), prefer 2SG present.
+  If no overt subject is present, the form is genuinely ambiguous and
+  PRS.12 is the appropriate analysis.
+
+CRITICAL RULE: Subject person constrains verb person.
+  If a 3rd person nominal subject is present (not мон, тон, ми, тӥ),
+  any candidate analysis with PRS.12 or any 1st/2nd person form should be
+  rejected in favor of a 3rd person form if one exists among the candidates.
+
+5.2 POSTPOSITIONAL GOVERNMENT
+
+Postpositions in Udmurt govern specific cases:
+- вылын (on, locative): governs Genitive (STEM-GEN)
+- вылэ (onto, illative): governs Genitive
+- улын (under, locative): governs Genitive
+- борды (to, toward): governs Dative
+- сэрен (because of): governs Genitive or appears as adverb (no governed NP)
+- ваме (in front of): governs Genitive
+- бордын (near, at): governs Genitive
+- пала (toward, about): governs Genitive
+
+DISAMBIGUATION: A form that can be analyzed both as a STEM (intransitive noun)
+and as a postposition (STEM-INS or similar) should be resolved by checking
+whether a governed nominal phrase precedes it.
+Rule: If a genitive-marked nominal precedes the candidate postposition,
+prefer the postpositional reading.
+
+5.3 CASE GOVERNMENT BY VERBS
+
+Transitive verbs govern the accusative/illative on their direct object.
+Verbs of motion govern the illative on their goal argument.
+The negative auxiliary (уд 'NEG.2SG', ум 'NEG.1SG/PL', уг 'NEG.3SG') governs
+a special negated verb form (NEG.SG or NEG.PL).
+
+NEGATION DISAMBIGUATION:
+  Negative finite forms end in -ы (NEG.SG) or alternate forms.
+  Tag: STEM-NEG.SG or STEM-NEG.PL.
+  The negative auxiliary and the negated lexical verb together constitute
+  the verbal predicate. The lexical verb under negation loses its own
+  tense/person marking; those are encoded on the negative auxiliary.
+  Rule: A form tagged STEM-NEG.SG/PL is only valid in a clause that also
+  contains one of the negative auxiliaries: уд, ум, уг, ӧд, ӧм, ӧз.
+
+
+# =============================================================================
+# 6. SPECIFIC DISAMBIGUATION RULES FOR COMMON AMBIGUITIES
+# =============================================================================
+
+6.1 PST-3SG vs. PASS-PST-3SG (most frequent ambiguity in corpus)
+
+The past 3SG active form and the passive past 3SG are formally identical
+except for the presence of the passive suffix -ськ- in the passive stem.
+However, many verbs in -ськ- are lexically intransitive (decausative/middle),
+not passivized forms of transitive verbs.
+
+Decision procedure:
+  Step 1: Is the verb stem inherently intransitive (motion, change-of-state,
+          inception verbs like кутскыны 'begin', потыны 'exit', луыны 'become')?
+          → Prefer active analysis STEM-PST-3SG.
+  Step 2: Is the subject animate and volitional?
+          → Prefer active analysis STEM-PST-3SG.
+  Step 3: Is the verb stem a transitive verb (transfer, creation, perception)?
+          AND is the surface subject inanimate or theme-role?
+          → Prefer passive analysis STEM-PASS-PST-3SG.
+  Step 4: If undecidable from context, mark as unresolved.
+
+6.2 STEM-PRS.12 vs. STEM-PASS-PRS.3PL vs. STEM-PASS-FUT (three-way ambiguity)
+
+This is the hardest case in the corpus (see: "уллясько").
+  - PRS.12: active present, 1st or 2nd person subject
+  - PASS-PRS.3PL: passive present, 3rd person plural subject
+  - PASS-FUT: passive future (no person specification in this tag)
+
+Decision procedure:
+  Step 1: Is there an overt 1st or 2nd person subject pronoun (мон, тон, ми, тӥ)?
+          → Prefer PRS.12.
+  Step 2: Is there an overt 3rd person plural subject?
+          → Prefer PASS-PRS.3PL.
+  Step 3: Is the clause expressing a future/generic state without a specific agent?
+          → Consider PASS-FUT.
+  Step 4: Is the verb used with 1st/2nd person context (narrative voice, direct speech)?
+          → Prefer PRS.12.
+  Step 5: If the sentence contains мон (I) as subject, prefer PRS.12 → read as 1SG.
+  Default: In newspaper texts with no overt subject, PRS.12 is the most frequent
+           reading for -сько forms.
+
+6.3 STEM-PRS.3PL vs. STEM-FUT vs. STEM-ATTR (three-way ambiguity in -о forms)
+
+Many verb forms ending in -о are ambiguous:
+  - PRS.3PL: present tense 3rd plural (сюро 'there are')
+  - FUT: future tense (without person/number specification in some analyses)
+  - ATTR: attributive/adjectival form ending in -о/-ё
+
+Decision procedure:
+  Step 1: Is the token modifying a following noun?
+          → Prefer ATTR (attributive).
+  Step 2: Is there an overt 3rd plural subject?
+          → Prefer PRS.3PL.
+  Step 3: Is the clause expressing prospective or predicted events?
+          → Prefer FUT.
+
+6.4 PTCP.PST vs. EVID (ambiguity of -эм/-ем forms)
+
+The suffix -эм/-ем is the most ambiguous suffix in Udmurt:
+  - PTCP.PST: participial modifier ('done', 'made'), pre-nominal
+  - EVID: evidential/inferential past, the speaker did not witness the event
+
+Decision procedure:
+  Step 1: Does the token immediately precede a noun in a genitive/possessive
+          construction or as a modifier?
+          → Prefer PTCP.PST.
+  Step 2: Is the token clause-final or in predicate position?
+          → Prefer EVID.
+  Step 3: Is the clause reporting second-hand information, folklore, or
+          surprising facts?
+          → Prefer EVID.
+
+6.5 SOИН (INS case) vs. СОИН (pronoun + postposition)
+
+The form "соин" (with capital С: "Соин") can be:
+  - STEM-INS: instrumental form of pronoun со 'that/it' ('with it/that')
+  - STEM || STEM-INS: two tokens — со (pronoun) + ин (postposition?) or
+    adverb со-ин (therefore)
+  
+  In the corpus tag STEM || STEM-INS means the token is ambiguous between
+  these readings. Decision: if the token functions as a sentence connective
+  ('therefore, for that reason'), prefer the adverb reading STEM.
+
+
+# =============================================================================
+# 7. SENTENCE-LEVEL CONTEXT RULES
+# =============================================================================
+
+7.1 CLAUSE TYPE DETECTION
+
+Declarative finite clauses:
+  A clause is declarative if it contains no interrogative pronoun (кин 'who',
+  ма 'what', кытын 'where') and no question particle.
+  In declarative clauses, indicative tense forms are preferred over
+  imperative forms.
+
+Question clauses:
+  Interrogative pronouns кин (who), ма (what), кытын (where), кыӵе (what kind)
+  mark the clause as interrogative. Verbal predicates in questions use
+  the same indicative forms as declarative clauses.
+
+Negative clauses:
+  Presence of negative auxiliaries (уд, ум, уг, ӧд, ӧм, ӧз) marks the clause
+  as negative. The lexical verb following the negative auxiliary takes NEG form.
+
+Imperative clauses:
+  An imperative clause typically lacks an overt subject and is clause-initial
+  with the verb. In text genre (newspaper), imperatives are rare.
+  RULE: Do not prefer imperative analysis unless the clause has no overt
+  3rd-person subject and has imperative-compatible structure.
+
+7.2 GENRE CONSTRAINTS
+
+The corpus consists of newspaper texts (press genre, years 2008–2017).
+Newspaper texts have the following statistical tendencies:
+  - Third person forms (PST-3SG, FUT-3SG, PRS.3SG) are much more frequent
+    than 1st/2nd person forms.
+  - PRS.12 occurs primarily in quoted speech.
+  - Passive forms occur in formal/official register passages.
+  - Evidential (EVID) forms occur in reporting clauses.
+  - Debitive (DEB) forms occur in planning or obligation statements.
+
+When all other constraints are inconclusive, prefer 3rd person active
+indicative readings over 1st/2nd person or passive readings in newspaper text.
+
+7.3 COORDINATION AND ELLIPSIS
+
+In coordinated verbal predicates (joined by но 'and'), all coordinated verbs
+share the same tense, person, and number as the first conjunct.
+Rule: If a token has candidate analyses of different tense/person, and a
+coordinated verb with clear tense/person marking precedes it, prefer the
+analysis that matches the preceding verb's features.
+
+
+# =============================================================================
+# 8. ANNOTATION TAG REFERENCE (UniParser-udm tagset)
+# =============================================================================
+
+Complete list of tags used in the corpus and their linguistic meaning:
+
+STEM             — bare stem, nominative or uninflected form
+STEM-PST-3SG     — past tense, 3rd person singular active
+STEM-PST-3PL     — past tense, 3rd person plural active
+STEM-PST-1PL     — past tense, 1st person plural active
+STEM-PST-1SG     — past tense, 1st person singular active
+STEM-PRS.3SG     — present tense, 3rd person singular
+STEM-PRS.3PL     — present tense, 3rd person plural
+STEM-PRS.12      — present tense, 1st or 2nd person (polypersonal)
+STEM-FUT-3SG     — future tense, 3rd person singular
+STEM-FUT-3PL     — future tense, 3rd person plural
+STEM-FUT-2SG     — future tense, 2nd person singular
+STEM-IMP.SG      — imperative, 2nd person singular
+STEM-IMP.PL      — imperative, 2nd person plural
+STEM-DEB         — debitive (obligation/necessity)
+STEM-PASS-PST-3SG  — passive voice, past, 3rd singular
+STEM-PASS-PST-3PL  — passive voice, past, 3rd plural
+STEM-PASS-PRS.3SG  — passive voice, present, 3rd singular
+STEM-PASS-PRS.3PL  — passive voice, present, 3rd plural
+STEM-PASS-FUT    — passive voice, future
+STEM-CAUS-PST-3SG  — causative, past, 3rd singular
+STEM-CAUS-PRS.3SG  — causative, present, 3rd singular
+STEM-CAUS-IMP.PL   — causative, imperative plural
+STEM-ITER-PST-1PL  — iterative aspect, past, 1st plural
+STEM-INF         — infinitive
+STEM-CVB         — converb (simultaneous/sequential)
+STEM-PTCP.ACT    — active participle (present)
+STEM-PTCP.PST    — past passive participle
+STEM-VN          — verbal noun
+STEM-VN-DAT      — verbal noun in dative
+STEM-VN-ADV      — verbal noun in adverbial case
+STEM-VN-PL       — verbal noun in plural
+STEM-PASS-VN     — passive verbal noun
+STEM-PASS-VN-PL  — passive verbal noun plural
+STEM-NEG.SG      — negated form (singular)
+STEM-NEG.PL      — negated form (plural)
+STEM-PRS12-NEG.PL — 1st/2nd person plural negated present
+STEM-PASS-NEG.PL  — passive negated plural
+STEM-EVID        — evidential/inferential past
+STEM-RES         — resultative form
+STEM-PL          — plural
+STEM-PL-ACC.PL   — plural with accusative plural
+STEM-PL-P.3SG.ACC — plural with 3SG possessive + accusative
+STEM-GEN         — genitive case
+STEM-DAT         — dative case
+STEM-ACC         — accusative case
+STEM-ILL         — illative case (directionality)
+STEM-ACC/ILL     — ambiguous accusative or illative
+STEM-LOC         — locative/inessive case
+STEM-EL          — elative case
+STEM-ABL         — ablative case
+STEM-INS         — instrumental case
+STEM-ADV         — adverbial case
+STEM-PROL        — prolative case
+STEM-DELIM       — delimitative
+STEM-INS/LOC     — ambiguous instrumental or locative
+STEM-P.3SG       — 3rd person singular possessive
+STEM-P.3SG.ACC   — 3rd person singular possessive + accusative
+STEM-P.3PL       — 3rd person plural possessive
+STEM-P.1PL       — 1st person plural possessive
+STEM-P.1SG       — 1st person singular possessive
+STEM-PTCP.ACT-P.3SG — active participle with 3SG possessive
+STEM-PTCP.ACT-P.3SG-GEN — active participle with 3SG possessive in genitive
+STEM-PTCP.ACT-ACC — active participle in accusative
+STEM-PTCP.PST-LOC — past participle in locative (resultative)
+STEM-PTCP.PST-ADV — past participle in adverbial case
+STEM-ORD         — ordinal numeral suffix (-этӥ/-тӥ)
+STEM-ORD-P.3SG   — ordinal with 3SG possessive
+STEM-COMP        — comparative suffix (-гес)
+STEM-ATTR        — attributive suffix (-о/-ё)
+
+
+# =============================================================================
+# 9. EXAMPLES OF DISAMBIGUATION FROM THE CORPUS
+# =============================================================================
+
+Example 1: "Революция кутскиз."
+  Token: кутскиз
+  Candidates: STEM-PST-3SG || STEM-PASS-PST-3SG
+  Lemma candidates: кутскыны (to begin) || кутыны (to take/seize)
+  Resolution: STEM-PST-3SG
+  Reasoning: кутскыны is inherently intransitive (inchoative verb 'to start').
+  The passive reading (кутыны + PASS) is semantically anomalous here because
+  the subject "Революция" is an event noun that cannot volitionally 'take' anything.
+  Agreement: "Революция" is 3SG nominal → 3SG verb form is required → PST-3SG confirmed.
+
+Example 2: "Уллясько, нош со уг но вырӟы."
+  Token: уллясько
+  Candidates: STEM-PRS.12 || STEM-PASS-PRS.3PL || STEM-PASS-FUT
+  Subject: first-person implied (narrative voice, direct speech context)
+  Resolution: STEM-PRS.12
+  Reasoning: No 3rd person plural subject present. The sentence structure and
+  the presence of со 'it' as a separate subject (for вырӟы) indicates the
+  first clause has a 1st person subject (dropped). Prefer PRS.12.
+
+Example 3: "Туннэ нуналлы татын сюро таза пудолэн лыдыз 900 йыр."
+  Token: сюро
+  Candidates: STEM-PRS.3PL || STEM-FUT || STEM-ATTR
+  Context: "today there are 900 healthy livestock"
+  Resolution: STEM-PRS.3PL
+  Reasoning: "туннэ" (today) forces present tense reading. The subject "лыдыз"
+  (their number) is 3SG, but the numeric predicate construction triggers 3PL agreement.
+  ATTR is excluded because сюро is not followed by a noun it modifies here.
+
+Example 4: "Соин сэрен ужась комбайнъёс сылоно луылӥзы."
+  Token: соин
+  Candidates: STEM || STEM-INS
+  Resolution: depends on syntactic role — adverb reading (STEM) is preferred
+  when the token functions as a sentence connective ('therefore').
+  Token: ужась
+  Candidates: STEM-PTCP.ACT || STEM (bare stem noun 'worker')
+  Following token: комбайнъёс (harvesters, plural noun)
+  Resolution: STEM-PTCP.ACT — the token precedes a noun and modifies it
+  ('working harvesters'). Prefer participial reading.
