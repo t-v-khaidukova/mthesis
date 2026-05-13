@@ -64,3 +64,24 @@ Arguments:
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+# Шаг 1: построить TBox из грамматики (один раз)
+
+```bash
+uv run stage_one.py \
+    --statute ./eval/udmurt_grammar.txt \
+    --output-tbox ./tbox.json \
+    --output-py ./interpreter.py \
+    --model claude-sonnet-4-6
+```
+
+# Шаг 2: запустить оценку
+
+```bash
+uv run stage_two_udmurt.py \
+    --corpus ./eval/corpus.csv \
+    --tbox-path ./tbox.json \
+    --tbox-interpreter-path ./interpreter.py \
+    --model claude-sonnet-4-6 \
+    --debug --limit 10
+```
