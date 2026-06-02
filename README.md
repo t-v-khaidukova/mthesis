@@ -77,10 +77,10 @@ uv run python stage_udmurt_two_sourcegrounded.py \
 ```
 
 Arguments:
+
 - `--model`: Модель для оценивания
 - `--test`: Тестовый набор данных
 - `--tbox-path`: Путь к TBox JSON (for solar mode)
 - `--tbox-interpreter-path`: Путь к интерпретеру TBox
 - `--output-dir`: Выходной путь для сгенерированных JSON
 - `--no-cache`: Отключить кэш LLM
-```
