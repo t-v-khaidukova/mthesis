@@ -1,0 +1,716 @@
+[
+  {
+    "sent_id": "sent_0",
+    "sentence": "+ужрадъес\\n",
+    "gold_tags": "STEM-PL",
+    "gold_analysis": "ужрад-ъес",
+    "uniparser_tag_line": "STEM-PL",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 1,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 1,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM-PL",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_1",
+    "sentence": "2-тӥ инты - \"Кынкорт\" команда (УИИЯЛ УрО РАН),👏👏👏\\n \\n",
+    "gold_tags": "STEM-PROL STEM STEM STEM STEM STEM-ATTR STEM",
+    "gold_analysis": "2-тӥ инты кынкорт команда УИИЯЛ ур-о РАН",
+    "uniparser_tag_line": "STEM-PROL STEM STEM STEM  STEM-ATTR || STEM-FUT || STEM-FUT || STEM-PRS.3PL || STEM-PRS.3PL",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 5,
+      "raw_analysis_ambiguous_tokens": 1,
+      "tag_ambiguous_tokens": 1,
+      "gold_in_candidates": 4,
+      "gold_not_in_candidates": 1,
+      "length_mismatch": true
+    },
+    "predicted": "STEM-PROL STEM STEM STEM STEM STEM-ATTR STEM",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "УрО",
+        "status": "resolved",
+        "selected_tag": "STEM-ATTR",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-ATTR",
+          "STEM-FUT",
+          "STEM-PRS.3PL",
+          "STEM"
+        ],
+        "reason": "[STEM-ATTR] выбран: AttributiveBeforeNounCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_3",
+    "sentence": "Мон дышемын ӧвӧл, монэ гинэ мед кылзозы шуыса.",
+    "gold_tags": "STEM STEM-PTCP.PST-LOC STEM STEM-ACC STEM STEM STEM-FUT-3PL STEM-CVB",
+    "gold_analysis": "мон дыш-ем-ын ӧвӧл мон-э гинэ мед кылз-о-зы шу-ыса",
+    "uniparser_tag_line": "STEM STEM-PTCP.PST-LOC || STEM-RES || STEM-LOC STEM STEM-ACC STEM STEM STEM-FUT-3PL STEM || STEM-CVB",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 8,
+      "raw_analysis_ambiguous_tokens": 2,
+      "tag_ambiguous_tokens": 2,
+      "gold_in_candidates": 8,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM-PTCP.PST-LOC STEM STEM-ACC STEM STEM STEM-FUT-3PL STEM-CVB",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "дышемын",
+        "status": "resolved",
+        "selected_tag": "STEM-PTCP.PST-LOC",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-PTCP.PST-LOC",
+          "STEM-RES",
+          "STEM-LOC"
+        ],
+        "reason": "[STEM-PTCP.PST-LOC] выбран: PastParticipleLocBeforeNegativeCopulaCompatibleAnalysis"
+      },
+      {
+        "surface": "шуыса",
+        "status": "resolved",
+        "selected_tag": "STEM-CVB",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM",
+          "STEM-CVB"
+        ],
+        "reason": "[STEM-CVB] выбран: ConverbSuffixSaCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_4",
+    "sentence": "Пинальесын луоз-а мыныны?\\n",
+    "gold_tags": "STEM STEM-FUT-3SG STEM STEM-INF",
+    "gold_analysis": "пинальесын лу-о-з а мын-ыны",
+    "uniparser_tag_line": "STEM || STEM-FUT-3SG STEM STEM-INF",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 3,
+      "raw_analysis_ambiguous_tokens": 1,
+      "tag_ambiguous_tokens": 1,
+      "gold_in_candidates": 1,
+      "gold_not_in_candidates": 2,
+      "length_mismatch": true
+    },
+    "predicted": "STEM STEM-FUT-3SG STEM STEM-INF",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "луоз-а",
+        "status": "resolved",
+        "selected_tag": "STEM-FUT-3SG",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM",
+          "STEM-FUT-3SG"
+        ],
+        "reason": "[STEM-FUT-3SG] выбран: FutureAfterKuleCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_5",
+    "sentence": "Мон али Германиысь Амберг карын улӥсько.",
+    "gold_tags": "STEM STEM STEM-EL STEM STEM-INS/LOC STEM-PRS.12",
+    "gold_analysis": "мон али германи-ысь амберг кар-ын ул-ӥсько",
+    "uniparser_tag_line": "STEM STEM || STEM-PST || STEM STEM-EL STEM STEM-INS/LOC STEM-PRS.12",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 6,
+      "raw_analysis_ambiguous_tokens": 1,
+      "tag_ambiguous_tokens": 1,
+      "gold_in_candidates": 6,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM STEM-EL STEM STEM-INS/LOC STEM-PRS.12",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "али",
+        "status": "resolved",
+        "selected_tag": "STEM",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM",
+          "STEM-PST"
+        ],
+        "reason": "[STEM] выбран: ClosedClassParticleStemCompatibleAnalysis; ClosedClassStemCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_6",
+    "sentence": "(Григорий Данилов \"Кырӟамтэ кырӟан\" повесть)\\n",
+    "gold_tags": "STEM STEM STEM-PTCP.NEG STEM-VN STEM",
+    "gold_analysis": "григорий данилов кырӟа-мтэ кырӟа-н повесть",
+    "uniparser_tag_line": "STEM STEM STEM-PTCP.NEG STEM-VN STEM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 5,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 5,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM STEM-PTCP.NEG STEM-VN STEM",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_7",
+    "sentence": "Кино со?!\\n",
+    "gold_tags": "STEM STEM",
+    "gold_analysis": "кино со",
+    "uniparser_tag_line": "STEM STEM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 2,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 2,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_8",
+    "sentence": "Озьы ик удмуртъёс пӧлын Петров Э.С., Лебедев М.В., Хохряков А.Г., Т. В. Ишматова - ваньмы \"Единая Россия\" партия пыр но П. С. Басов но В. А. Красильников - КПРФ.",
+    "gold_tags": "STEM STEM STEM-PL STEM-LOC STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM-P.1PL STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM",
+    "gold_analysis": "озьы ик удмурт-ъёс пӧл-ын петров Э. С лебедев М. В хохряков А. Г Т В ишматова вань-мы единая россия партия пыр но П С басов но В а красильников кпрф",
+    "uniparser_tag_line": "STEM STEM STEM-PL STEM-LOC STEM   STEM   STEM     STEM STEM-IMP.SG || STEM-P.1PL || STEM-P.1PL STEM STEM STEM-PROL-ADV || STEM STEM STEM   STEM STEM  STEM STEM STEM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 19,
+      "raw_analysis_ambiguous_tokens": 2,
+      "tag_ambiguous_tokens": 2,
+      "gold_in_candidates": 17,
+      "gold_not_in_candidates": 2,
+      "length_mismatch": true
+    },
+    "predicted": "STEM STEM STEM-PL STEM-LOC STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM STEM NO_CANDS NO_CANDS NO_CANDS",
+    "exact_sentence_match": false,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "Хохряков",
+        "status": "resolved",
+        "selected_tag": "STEM",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-IMP.SG",
+          "STEM-P.1PL",
+          "STEM"
+        ],
+        "reason": "[STEM] выбран: NameOrAbbreviationBareStemCompatibleAnalysis"
+      },
+      {
+        "surface": "В",
+        "status": "resolved",
+        "selected_tag": "STEM",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-PROL-ADV",
+          "STEM"
+        ],
+        "reason": "[STEM] выбран: NameOrAbbreviationBareStemCompatibleAnalysis; NominalStemOverProlativeAdverbCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_9",
+    "sentence": "<USER>, пуктомы одно\\n",
+    "gold_tags": "STEM-FUT-1PL STEM",
+    "gold_analysis": "пукт-о-мы одно",
+    "uniparser_tag_line": "STEM-FUT-1PL || STEM-CAUS-FUT-1PL STEM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 2,
+      "raw_analysis_ambiguous_tokens": 1,
+      "tag_ambiguous_tokens": 1,
+      "gold_in_candidates": 2,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "UNRESOLVED[STEM-FUT-1PL||STEM-CAUS-FUT-1PL||STEM] STEM",
+    "exact_sentence_match": false,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "USER",
+        "status": "unresolved",
+        "selected_tag": null,
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-FUT-1PL",
+          "STEM-CAUS-FUT-1PL",
+          "STEM"
+        ],
+        "reason": "Правил недостаточно для однозначного выбора"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_10",
+    "sentence": "таче чебер кылбур\\n",
+    "gold_tags": "STEM STEM STEM",
+    "gold_analysis": "таче чебер кылбур",
+    "uniparser_tag_line": "STEM STEM STEM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 3,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 3,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM STEM",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_11",
+    "sentence": "Зэмос удмурт сямъя, Надежда быдэс жок тыр сиен-юон дасям - мынам яратоно коньыгубиосы, пыжем картошка, сылалтэм огреч...",
+    "gold_tags": "STEM STEM STEM-ADV STEM STEM STEM STEM STEM STEM-PTCP.PST STEM STEM-DEB STEM-PL-ILL STEM-PTCP.PST STEM STEM-NEG.ATTR STEM",
+    "gold_analysis": "зэмос удмурт сям-ъя надежда быдэс жок тыр сиен-юон дася-м мынам ярат-оно коньыгуби-ос-ы пыж-ем картошка сылал-тэм огреч",
+    "uniparser_tag_line": "STEM STEM STEM-ADV STEM STEM STEM STEM STEM STEM-EVID || STEM-1PL || STEM-PTCP.PST || STEM STEM STEM || STEM-DEB STEM-PL-P.1SG || STEM-PL-ILL STEM-EVID || STEM || STEM-PTCP.PST STEM STEM-NEG.ATTR || STEM-EVID || STEM-PTCP.PST STEM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 16,
+      "raw_analysis_ambiguous_tokens": 5,
+      "tag_ambiguous_tokens": 5,
+      "gold_in_candidates": 16,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM STEM-ADV STEM STEM STEM STEM STEM STEM-PTCP.PST STEM STEM-DEB STEM-PL-ILL STEM-PTCP.PST STEM STEM-NEG.ATTR STEM",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "дасям",
+        "status": "resolved",
+        "selected_tag": "STEM-PTCP.PST",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-EVID",
+          "STEM-1PL",
+          "STEM-PTCP.PST",
+          "STEM"
+        ],
+        "reason": "[STEM-PTCP.PST] выбран: PastParticipleModifierCompatibleAnalysis; PastParticipleOverEvidentialCompatibleAnalysis"
+      },
+      {
+        "surface": "яратоно",
+        "status": "resolved",
+        "selected_tag": "STEM-DEB",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM",
+          "STEM-DEB"
+        ],
+        "reason": "[STEM-DEB] выбран: DebitiveOnoSuffixCompatibleAnalysis"
+      },
+      {
+        "surface": "коньыгубиосы",
+        "status": "resolved",
+        "selected_tag": "STEM-PL-ILL",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-PL-P.1SG",
+          "STEM-PL-ILL"
+        ],
+        "reason": "[STEM-PL-ILL] выбран: PluralIllativeOsyCompatibleAnalysis"
+      },
+      {
+        "surface": "пыжем",
+        "status": "resolved",
+        "selected_tag": "STEM-PTCP.PST",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-EVID",
+          "STEM",
+          "STEM-PTCP.PST"
+        ],
+        "reason": "[STEM-PTCP.PST] выбран: PastParticipleModifierCompatibleAnalysis; PastParticipleOverEvidentialCompatibleAnalysis"
+      },
+      {
+        "surface": "сылалтэм",
+        "status": "resolved",
+        "selected_tag": "STEM-NEG.ATTR",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-NEG.ATTR",
+          "STEM-EVID",
+          "STEM-PTCP.PST"
+        ],
+        "reason": "[STEM-NEG.ATTR] выбран: AttributiveBeforeNounCompatibleAnalysis; NegativeAttributiveBeforeNounCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_12",
+    "sentence": "Мыным туж ӝож луэ, ку мон малпасько Шундыкар сярысь.",
+    "gold_tags": "STEM STEM STEM STEM-PRS.3SG STEM STEM STEM-PRS.12 STEM STEM",
+    "gold_analysis": "мыным туж ӝож лу-э ку мон малпа-сько шундыкар сярысь",
+    "uniparser_tag_line": "STEM STEM STEM STEM-PRS.3SG STEM STEM STEM-PASS-PRS.3PL || STEM-PASS-FUT || STEM-PRS.12 STEM STEM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 9,
+      "raw_analysis_ambiguous_tokens": 1,
+      "tag_ambiguous_tokens": 1,
+      "gold_in_candidates": 9,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM STEM STEM-PRS.3SG STEM STEM STEM-PRS.12 STEM STEM",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "малпасько",
+        "status": "resolved",
+        "selected_tag": "STEM-PRS.12",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-PASS-PRS.3PL",
+          "STEM-PASS-FUT",
+          "STEM-PRS.12"
+        ],
+        "reason": "[STEM-PRS.12] выбран: FirstPersonPRS12CompatibleAnalysis; FirstPersonContextPRS12CompatibleAnalysis; PresentTwelveSuffixCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_13",
+    "sentence": "Бигер кыл бордазы лякиськиз ини берло, 1438 арысен кутскыса - куке соосты копак согизы лыктэм бигеръёс.",
+    "gold_tags": "STEM STEM STEM-ILL/LOC-P.3PL STEM-PASS-PST-3SG STEM STEM STEM-EGR STEM-CVB STEM STEM STEM-PL-ACC.PL STEM STEM-PST-3PL STEM-PTCP.PST STEM-PL",
+    "gold_analysis": "бигер кыл борд-а-зы ляк-иськ-и-з ини берло 1438 ар-ысен кутск-ыса ку ке со-ос-ты копак сог-и-зы лыкт-эм бигер-ъёс",
+    "uniparser_tag_line": "STEM STEM STEM-ILL/LOC-P.3PL STEM-PASS-PST-3SG STEM STEM  STEM-EGR STEM-PASS-CVB || STEM-CVB STEM STEM STEM-PL-ACC.PL || STEM-PL-P.2PL STEM STEM-PST-3PL STEM-EVID || STEM-PTCP.PST STEM-PL",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 15,
+      "raw_analysis_ambiguous_tokens": 3,
+      "tag_ambiguous_tokens": 3,
+      "gold_in_candidates": 15,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM STEM-ILL/LOC-P.3PL STEM-PASS-PST-3SG STEM STEM STEM-EGR STEM-CVB STEM STEM STEM-PL-ACC.PL STEM STEM-PST-3PL STEM-PTCP.PST STEM-PL NO_CANDS",
+    "exact_sentence_match": false,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "арысен",
+        "status": "resolved",
+        "selected_tag": "STEM-CVB",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-PASS-CVB",
+          "STEM-CVB"
+        ],
+        "reason": "[STEM-CVB] выбран: PlainConverbOverPassiveCompatibleAnalysis"
+      },
+      {
+        "surface": "соосты",
+        "status": "resolved",
+        "selected_tag": "STEM-PL-ACC.PL",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-PL-ACC.PL",
+          "STEM-PL-P.2PL"
+        ],
+        "reason": "[STEM-PL-ACC.PL] выбран: PluralAccusativePronounCompatibleAnalysis"
+      },
+      {
+        "surface": "лыктэм",
+        "status": "resolved",
+        "selected_tag": "STEM-PTCP.PST",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-EVID",
+          "STEM-PTCP.PST"
+        ],
+        "reason": "[STEM-PTCP.PST] выбран: PastParticipleOverEvidentialCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_14",
+    "sentence": "Жингырес уг луиз.\\n",
+    "gold_tags": "STEM STEM STEM-PST-3SG",
+    "gold_analysis": "жингырес уг лу-и-з",
+    "uniparser_tag_line": "STEM STEM STEM-PST-3SG",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 3,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 3,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM STEM-PST-3SG",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_15",
+    "sentence": "Туж тросэз кылиз ож лудын.\\n",
+    "gold_tags": "STEM STEM-ACC STEM-PST-3SG STEM STEM-LOC",
+    "gold_analysis": "туж трос-эз кыл-и-з ож луд-ын",
+    "uniparser_tag_line": "STEM STEM-P.3SG || STEM-ACC STEM-PST-3SG STEM STEM-LOC",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 5,
+      "raw_analysis_ambiguous_tokens": 1,
+      "tag_ambiguous_tokens": 1,
+      "gold_in_candidates": 5,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM-ACC STEM-PST-3SG STEM STEM-LOC",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "тросэз",
+        "status": "resolved",
+        "selected_tag": "STEM-ACC",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-P.3SG",
+          "STEM-ACC"
+        ],
+        "reason": "[STEM-ACC] выбран: AccusativeObjectBeforeFiniteVerbCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_16",
+    "sentence": "Уксёдэс ӝикытгес кутэлэ.\\n",
+    "gold_tags": "STEM-P.2PL.ACC STEM-COMP STEM-IMP.PL-IMP.PL",
+    "gold_analysis": "уксё-дэс ӝикыт-гес кут-э-лэ",
+    "uniparser_tag_line": "STEM-P.2PL.ACC STEM-COMP STEM-IMP.PL-IMP.PL",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 3,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 3,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM-P.2PL.ACC STEM-COMP STEM-IMP.PL-IMP.PL",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_17",
+    "sentence": "тазалык но шудбур!\\n",
+    "gold_tags": "STEM STEM STEM",
+    "gold_analysis": "тазалык но шудбур",
+    "uniparser_tag_line": "STEM STEM STEM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 3,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 3,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM STEM",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_18",
+    "sentence": "улӥськод, кызьы потэ.\\n \\n",
+    "gold_tags": "STEM-PRS.12-2SG STEM STEM-PRS.3SG",
+    "gold_analysis": "ул-ӥсько-д кызьы пот-э",
+    "uniparser_tag_line": "STEM-PRS.12-2SG STEM STEM-PRS.3SG",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 3,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 3,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM-PRS.12-2SG STEM STEM-PRS.3SG",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_19",
+    "sentence": "Костаськыны солы кулэ луоз на тулысозь.\\n",
+    "gold_tags": "STEM-PASS-INF STEM-DAT STEM STEM-FUT-3SG STEM STEM-TERM",
+    "gold_analysis": "коста-ськ-ыны со-лы кулэ лу-о-з на тулыс-озь",
+    "uniparser_tag_line": "STEM-PASS-INF STEM-DAT STEM STEM || STEM-FUT-3SG STEM STEM-TERM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 6,
+      "raw_analysis_ambiguous_tokens": 1,
+      "tag_ambiguous_tokens": 1,
+      "gold_in_candidates": 6,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM-PASS-INF STEM-DAT STEM STEM-FUT-3SG STEM STEM-TERM",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "луоз",
+        "status": "resolved",
+        "selected_tag": "STEM-FUT-3SG",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM",
+          "STEM-FUT-3SG"
+        ],
+        "reason": "[STEM-FUT-3SG] выбран: FutureAfterKuleCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_20",
+    "sentence": "Сырез усиз, сырен вал пояськись...\\n",
+    "gold_tags": "STEM-P.3SG STEM-PST-3SG STEM-INS STEM STEM-PASS-PTCP.ACT",
+    "gold_analysis": "сыр-ез ус-и-з сыр-ен вал поя-ськ-ись",
+    "uniparser_tag_line": "STEM-P.3SG STEM-PST-3SG STEM-INS STEM STEM-PASS-PTCP.ACT",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 5,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 5,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM-P.3SG STEM-PST-3SG STEM-INS STEM STEM-PASS-PTCP.ACT",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_21",
+    "sentence": "Возьматы ымныр тустэ,\\n",
+    "gold_tags": "STEM-IMP.SG STEM STEM-P.2SG.ACC",
+    "gold_analysis": "возьмат-ы ымныр тус-тэ",
+    "uniparser_tag_line": "STEM-IMP.SG || STEM-CAUS-IMP.SG STEM STEM-P.2SG.ACC",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 3,
+      "raw_analysis_ambiguous_tokens": 1,
+      "tag_ambiguous_tokens": 1,
+      "gold_in_candidates": 3,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM-IMP.SG STEM STEM-P.2SG.ACC",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "Возьматы",
+        "status": "resolved",
+        "selected_tag": "STEM-IMP.SG",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-IMP.SG",
+          "STEM-CAUS-IMP.SG"
+        ],
+        "reason": "[STEM-IMP.SG] выбран: PlainImperativeOverCausativeCompatibleAnalysis"
+      }
+    ]
+  },
+  {
+    "sent_id": "sent_22",
+    "sentence": "Кыл сётӥм, ум берытске ноку,\\n",
+    "gold_tags": "STEM STEM-PST-1PL STEM STEM-NEG.PL STEM",
+    "gold_analysis": "кыл сёт-ӥ-м ум берытск-е ноку",
+    "uniparser_tag_line": "STEM STEM-PST-1PL STEM STEM-NEG.PL STEM",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 5,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 5,
+      "gold_not_in_candidates": 0,
+      "length_mismatch": false
+    },
+    "predicted": "STEM STEM-PST-1PL STEM STEM-NEG.PL STEM",
+    "exact_sentence_match": true,
+    "error": null,
+    "disambiguations": []
+  },
+  {
+    "sent_id": "sent_23",
+    "sentence": "ваньзэ-ваньзэ умойзэ гинэ сизисько!!!!)))",
+    "gold_tags": "STEM-P.3SG.ACC STEM-P.3SG.ACC STEM STEM-PRS.12",
+    "gold_analysis": "вань-зэ вань-зэ умой-зэ гинэ сиз-исько",
+    "uniparser_tag_line": "STEM-P.3SG.ACC STEM-P.3SG.ACC STEM-P.3SG.ACC STEM STEM-PRS.12 || STEM-PASS-PRS.3PL || STEM-PASS-FUT",
+    "uniparser_candidate_summary": {
+      "compared_tokens": 4,
+      "raw_analysis_ambiguous_tokens": 0,
+      "tag_ambiguous_tokens": 0,
+      "gold_in_candidates": 2,
+      "gold_not_in_candidates": 2,
+      "length_mismatch": true
+    },
+    "predicted": "STEM-P.3SG.ACC STEM-P.3SG.ACC STEM STEM-PRS.12 UNRESOLVED[STEM-PRS.12||STEM-PASS-PRS.3PL||STEM-PASS-FUT]",
+    "exact_sentence_match": false,
+    "error": null,
+    "disambiguations": [
+      {
+        "surface": "гинэ",
+        "status": "resolved",
+        "selected_tag": "STEM",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-P.3SG.ACC",
+          "STEM"
+        ],
+        "reason": "[STEM] выбран: ClosedClassStemCompatibleAnalysis"
+      },
+      {
+        "surface": "сизисько",
+        "status": "resolved",
+        "selected_tag": "STEM-PRS.12",
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM",
+          "STEM-PRS.12"
+        ],
+        "reason": "[STEM-PRS.12] выбран: PresentTwelveSuffixCompatibleAnalysis"
+      },
+      {
+        "surface": "сиз",
+        "status": "unresolved",
+        "selected_tag": null,
+        "rejected_tags": [],
+        "all_candidates": [
+          "STEM-PRS.12",
+          "STEM-PASS-PRS.3PL",
+          "STEM-PASS-FUT"
+        ],
+        "reason": "Правил недостаточно для однозначного выбора"
+      }
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "model": "fixed",
+  "tbox_path": "./tbox.json",
+  "tbox_interpreter_path": "interpreter_claude_fixed.py",
+  "interpreter_metrics": {
+    "total_tokens": 144,
+    "resolved": 143,
+    "resolved_correct": 142,
+    "unresolved": 1,
+    "unresolved_with_gold": 1,
+    "missing_prediction": 0,
+    "extra_prediction_tokens": 6,
+    "length_mismatch_sentences": 3,
+    "resolution_rate": 0.9930555555555556,
+    "precision_on_resolved": 0.993006993006993,
+    "accuracy_on_all_tokens": 0.9861111111111112
+  },
+  "uniparser_candidate_metrics": {
+    "compared_tokens": 134,
+    "raw_analysis_ambiguous_tokens": 20,
+    "tag_ambiguous_tokens": 20,
+    "tag_unambiguous_tokens": 114,
+    "gold_in_candidates": 127,
+    "gold_not_in_candidates": 7,
+    "unambiguous_correct": 109,
+    "unambiguous_incorrect": 5,
+    "tag_ambiguous_gold_in_candidates": 18,
+    "tag_ambiguous_gold_not_in_candidates": 2,
+    "sentences": 23,
+    "length_mismatch_sentences": 4,
+    "raw_analysis_ambiguous_rate": 0.14925373134328357,
+    "tag_ambiguous_rate": 0.14925373134328357,
+    "gold_in_candidates_rate": 0.9477611940298507,
+    "unambiguous_correct_rate": 0.956140350877193
+  },
+  "processed_sentences": 23,
+  "loaded_sentences_after_filtering": 23,
+  "limit": -1,
+  "output": "results_udmurt_fixed.json",
+  "summary_output": "results_udmurt_fixed_summary.json",
+  "token_output": "results_udmurt_fixed_token_candidates.csv"
+}

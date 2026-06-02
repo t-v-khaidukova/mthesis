@@ -1,0 +1,135 @@
+sent_id;token_index;surface;gold_tag;candidate_tags_raw;candidate_tags_unique;raw_candidate_count;unique_tag_count;raw_analysis_ambiguous;tag_ambiguous;gold_in_candidates
+sent_0;0;+ужрадъес\n;STEM-PL;"[""STEM-PL""]";"[""STEM-PL""]";1;1;False;False;True
+sent_1;0;2-тӥ;STEM-PROL;"[""STEM-PROL""]";"[""STEM-PROL""]";1;1;False;False;True
+sent_1;1;инты;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_1;2;-;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_1;3;"""Кынкорт""";STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_1;4;команда;STEM;"[""STEM-ATTR"", ""STEM-FUT"", ""STEM-FUT"", ""STEM-PRS.3PL"", ""STEM-PRS.3PL""]";"[""STEM-ATTR"", ""STEM-FUT"", ""STEM-PRS.3PL""]";5;3;True;True;False
+sent_3;0;Мон;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_3;1;дышемын;STEM-PTCP.PST-LOC;"[""STEM-PTCP.PST-LOC"", ""STEM-RES"", ""STEM-LOC""]";"[""STEM-PTCP.PST-LOC"", ""STEM-RES"", ""STEM-LOC""]";3;3;True;True;True
+sent_3;2;ӧвӧл,;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_3;3;монэ;STEM-ACC;"[""STEM-ACC""]";"[""STEM-ACC""]";1;1;False;False;True
+sent_3;4;гинэ;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_3;5;мед;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_3;6;кылзозы;STEM-FUT-3PL;"[""STEM-FUT-3PL""]";"[""STEM-FUT-3PL""]";1;1;False;False;True
+sent_3;7;шуыса.;STEM-CVB;"[""STEM"", ""STEM-CVB""]";"[""STEM"", ""STEM-CVB""]";2;2;True;True;True
+sent_4;0;Пинальесын;STEM;"[""STEM"", ""STEM-FUT-3SG""]";"[""STEM"", ""STEM-FUT-3SG""]";2;2;True;True;True
+sent_4;1;луоз-а;STEM-FUT-3SG;"[""STEM""]";"[""STEM""]";1;1;False;False;False
+sent_4;2;мыныны?\n;STEM;"[""STEM-INF""]";"[""STEM-INF""]";1;1;False;False;False
+sent_5;0;Мон;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_5;1;али;STEM;"[""STEM"", ""STEM-PST"", ""STEM""]";"[""STEM"", ""STEM-PST""]";3;2;True;True;True
+sent_5;2;Германиысь;STEM-EL;"[""STEM-EL""]";"[""STEM-EL""]";1;1;False;False;True
+sent_5;3;Амберг;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_5;4;карын;STEM-INS/LOC;"[""STEM-INS/LOC""]";"[""STEM-INS/LOC""]";1;1;False;False;True
+sent_5;5;улӥсько.;STEM-PRS.12;"[""STEM-PRS.12""]";"[""STEM-PRS.12""]";1;1;False;False;True
+sent_6;0;(Григорий;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_6;1;Данилов;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_6;2;"""Кырӟамтэ";STEM-PTCP.NEG;"[""STEM-PTCP.NEG""]";"[""STEM-PTCP.NEG""]";1;1;False;False;True
+sent_6;3;"кырӟан""";STEM-VN;"[""STEM-VN""]";"[""STEM-VN""]";1;1;False;False;True
+sent_6;4;повесть)\n;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_7;0;Кино;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_7;1;со?!\n;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;0;Озьы;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;1;ик;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;2;удмуртъёс;STEM-PL;"[""STEM-PL""]";"[""STEM-PL""]";1;1;False;False;True
+sent_8;3;пӧлын;STEM-LOC;"[""STEM-LOC""]";"[""STEM-LOC""]";1;1;False;False;True
+sent_8;4;Петров;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;5;Э.С.,;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;6;Лебедев;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;7;М.В.,;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;8;Хохряков;STEM;"[""STEM-IMP.SG"", ""STEM-P.1PL"", ""STEM-P.1PL""]";"[""STEM-IMP.SG"", ""STEM-P.1PL""]";3;2;True;True;False
+sent_8;9;А.Г.,;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;10;Т.;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;11;В.;STEM;"[""STEM-PROL-ADV"", ""STEM""]";"[""STEM-PROL-ADV"", ""STEM""]";2;2;True;True;True
+sent_8;12;Ишматова;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;13;-;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;14;ваньмы;STEM-P.1PL;"[""STEM""]";"[""STEM""]";1;1;False;False;False
+sent_8;15;"""Единая";STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;16;"Россия""";STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;17;партия;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_8;18;пыр;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_9;0;<USER>,;STEM-FUT-1PL;"[""STEM-FUT-1PL"", ""STEM-CAUS-FUT-1PL""]";"[""STEM-FUT-1PL"", ""STEM-CAUS-FUT-1PL""]";2;2;True;True;True
+sent_9;1;пуктомы;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_10;0;таче;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_10;1;чебер;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_10;2;кылбур\n;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;0;Зэмос;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;1;удмурт;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;2;сямъя,;STEM-ADV;"[""STEM-ADV""]";"[""STEM-ADV""]";1;1;False;False;True
+sent_11;3;Надежда;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;4;быдэс;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;5;жок;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;6;тыр;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;7;сиен-юон;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;8;дасям;STEM-PTCP.PST;"[""STEM-EVID"", ""STEM-1PL"", ""STEM-PTCP.PST"", ""STEM""]";"[""STEM-EVID"", ""STEM-1PL"", ""STEM-PTCP.PST"", ""STEM""]";4;4;True;True;True
+sent_11;9;-;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;10;мынам;STEM-DEB;"[""STEM"", ""STEM-DEB""]";"[""STEM"", ""STEM-DEB""]";2;2;True;True;True
+sent_11;11;яратоно;STEM-PL-ILL;"[""STEM-PL-P.1SG"", ""STEM-PL-ILL""]";"[""STEM-PL-P.1SG"", ""STEM-PL-ILL""]";2;2;True;True;True
+sent_11;12;коньыгубиосы,;STEM-PTCP.PST;"[""STEM-EVID"", ""STEM"", ""STEM-PTCP.PST""]";"[""STEM-EVID"", ""STEM"", ""STEM-PTCP.PST""]";3;3;True;True;True
+sent_11;13;пыжем;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_11;14;картошка,;STEM-NEG.ATTR;"[""STEM-NEG.ATTR"", ""STEM-EVID"", ""STEM-PTCP.PST""]";"[""STEM-NEG.ATTR"", ""STEM-EVID"", ""STEM-PTCP.PST""]";3;3;True;True;True
+sent_11;15;сылалтэм;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_12;0;Мыным;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_12;1;туж;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_12;2;ӝож;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_12;3;луэ,;STEM-PRS.3SG;"[""STEM-PRS.3SG""]";"[""STEM-PRS.3SG""]";1;1;False;False;True
+sent_12;4;ку;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_12;5;мон;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_12;6;малпасько;STEM-PRS.12;"[""STEM-PASS-PRS.3PL"", ""STEM-PASS-FUT"", ""STEM-PRS.12""]";"[""STEM-PASS-PRS.3PL"", ""STEM-PASS-FUT"", ""STEM-PRS.12""]";3;3;True;True;True
+sent_12;7;Шундыкар;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_12;8;сярысь.;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_13;0;Бигер;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_13;1;кыл;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_13;2;бордазы;STEM-ILL/LOC-P.3PL;"[""STEM-ILL/LOC-P.3PL""]";"[""STEM-ILL/LOC-P.3PL""]";1;1;False;False;True
+sent_13;3;лякиськиз;STEM-PASS-PST-3SG;"[""STEM-PASS-PST-3SG""]";"[""STEM-PASS-PST-3SG""]";1;1;False;False;True
+sent_13;4;ини;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_13;5;берло,;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_13;6;1438;STEM-EGR;"[""STEM-EGR""]";"[""STEM-EGR""]";1;1;False;False;True
+sent_13;7;арысен;STEM-CVB;"[""STEM-PASS-CVB"", ""STEM-CVB""]";"[""STEM-PASS-CVB"", ""STEM-CVB""]";2;2;True;True;True
+sent_13;8;кутскыса;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_13;9;-;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_13;10;куке;STEM-PL-ACC.PL;"[""STEM-PL-ACC.PL"", ""STEM-PL-P.2PL""]";"[""STEM-PL-ACC.PL"", ""STEM-PL-P.2PL""]";2;2;True;True;True
+sent_13;11;соосты;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_13;12;копак;STEM-PST-3PL;"[""STEM-PST-3PL""]";"[""STEM-PST-3PL""]";1;1;False;False;True
+sent_13;13;согизы;STEM-PTCP.PST;"[""STEM-EVID"", ""STEM-PTCP.PST""]";"[""STEM-EVID"", ""STEM-PTCP.PST""]";2;2;True;True;True
+sent_13;14;лыктэм;STEM-PL;"[""STEM-PL""]";"[""STEM-PL""]";1;1;False;False;True
+sent_14;0;Жингырес;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_14;1;уг;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_14;2;луиз.\n;STEM-PST-3SG;"[""STEM-PST-3SG""]";"[""STEM-PST-3SG""]";1;1;False;False;True
+sent_15;0;Туж;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_15;1;тросэз;STEM-ACC;"[""STEM-P.3SG"", ""STEM-ACC""]";"[""STEM-P.3SG"", ""STEM-ACC""]";2;2;True;True;True
+sent_15;2;кылиз;STEM-PST-3SG;"[""STEM-PST-3SG""]";"[""STEM-PST-3SG""]";1;1;False;False;True
+sent_15;3;ож;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_15;4;лудын.\n;STEM-LOC;"[""STEM-LOC""]";"[""STEM-LOC""]";1;1;False;False;True
+sent_16;0;Уксёдэс;STEM-P.2PL.ACC;"[""STEM-P.2PL.ACC""]";"[""STEM-P.2PL.ACC""]";1;1;False;False;True
+sent_16;1;ӝикытгес;STEM-COMP;"[""STEM-COMP""]";"[""STEM-COMP""]";1;1;False;False;True
+sent_16;2;кутэлэ.\n;STEM-IMP.PL-IMP.PL;"[""STEM-IMP.PL-IMP.PL""]";"[""STEM-IMP.PL-IMP.PL""]";1;1;False;False;True
+sent_17;0;тазалык;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_17;1;но;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_17;2;шудбур!\n;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_18;0;улӥськод,;STEM-PRS.12-2SG;"[""STEM-PRS.12-2SG""]";"[""STEM-PRS.12-2SG""]";1;1;False;False;True
+sent_18;1;кызьы;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_18;2;потэ.\n;STEM-PRS.3SG;"[""STEM-PRS.3SG""]";"[""STEM-PRS.3SG""]";1;1;False;False;True
+sent_19;0;Костаськыны;STEM-PASS-INF;"[""STEM-PASS-INF""]";"[""STEM-PASS-INF""]";1;1;False;False;True
+sent_19;1;солы;STEM-DAT;"[""STEM-DAT""]";"[""STEM-DAT""]";1;1;False;False;True
+sent_19;2;кулэ;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_19;3;луоз;STEM-FUT-3SG;"[""STEM"", ""STEM-FUT-3SG""]";"[""STEM"", ""STEM-FUT-3SG""]";2;2;True;True;True
+sent_19;4;на;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_19;5;тулысозь.\n;STEM-TERM;"[""STEM-TERM""]";"[""STEM-TERM""]";1;1;False;False;True
+sent_20;0;Сырез;STEM-P.3SG;"[""STEM-P.3SG""]";"[""STEM-P.3SG""]";1;1;False;False;True
+sent_20;1;усиз,;STEM-PST-3SG;"[""STEM-PST-3SG""]";"[""STEM-PST-3SG""]";1;1;False;False;True
+sent_20;2;сырен;STEM-INS;"[""STEM-INS""]";"[""STEM-INS""]";1;1;False;False;True
+sent_20;3;вал;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_20;4;пояськись...\n;STEM-PASS-PTCP.ACT;"[""STEM-PASS-PTCP.ACT""]";"[""STEM-PASS-PTCP.ACT""]";1;1;False;False;True
+sent_21;0;Возьматы;STEM-IMP.SG;"[""STEM-IMP.SG"", ""STEM-CAUS-IMP.SG""]";"[""STEM-IMP.SG"", ""STEM-CAUS-IMP.SG""]";2;2;True;True;True
+sent_21;1;ымныр;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_21;2;тустэ,\n;STEM-P.2SG.ACC;"[""STEM-P.2SG.ACC""]";"[""STEM-P.2SG.ACC""]";1;1;False;False;True
+sent_22;0;Кыл;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_22;1;сётӥм,;STEM-PST-1PL;"[""STEM-PST-1PL""]";"[""STEM-PST-1PL""]";1;1;False;False;True
+sent_22;2;ум;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_22;3;берытске;STEM-NEG.PL;"[""STEM-NEG.PL""]";"[""STEM-NEG.PL""]";1;1;False;False;True
+sent_22;4;ноку,\n;STEM;"[""STEM""]";"[""STEM""]";1;1;False;False;True
+sent_23;0;ваньзэ-ваньзэ;STEM-P.3SG.ACC;"[""STEM-P.3SG.ACC""]";"[""STEM-P.3SG.ACC""]";1;1;False;False;True
+sent_23;1;умойзэ;STEM-P.3SG.ACC;"[""STEM-P.3SG.ACC""]";"[""STEM-P.3SG.ACC""]";1;1;False;False;True
+sent_23;2;гинэ;STEM;"[""STEM-P.3SG.ACC""]";"[""STEM-P.3SG.ACC""]";1;1;False;False;False
+sent_23;3;сизисько!!!!)));STEM-PRS.12;"[""STEM""]";"[""STEM""]";1;1;False;False;False
