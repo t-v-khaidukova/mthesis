@@ -1,0 +1,819 @@
+{
+  "classes": [
+    {
+      "name": "Sentence",
+      "description": "A clause or sentence unit in the corpus containing tokens to be analyzed."
+    },
+    {
+      "name": "Token",
+      "description": "A surface word form occurring in a sentence, potentially ambiguous between multiple analyses."
+    },
+    {
+      "name": "CandidateAnalysis",
+      "description": "One possible morphological analysis of a token, consisting of a stem plus suffix tags."
+    },
+    {
+      "name": "Lemma",
+      "description": "The dictionary/citation form (stem) underlying a candidate analysis."
+    },
+    {
+      "name": "Stem",
+      "description": "The verbal or nominal stem to which morphological suffixes attach."
+    },
+    {
+      "name": "Suffix",
+      "description": "A morphological suffix attached to a stem expressing grammatical features."
+    },
+    {
+      "name": "PartOfSpeech",
+      "description": "A lexical category such as Verb, Noun, Postposition, Adverb, Conjunction, Particle, Pronoun, Numeral."
+    },
+    {
+      "name": "Case",
+      "description": "A morphosyntactic category marking nominal grammatical role (NOM, GEN, DAT, ACC, ILL, LOC, EL, ABL, INS, ADV, PROL, DELIM)."
+    },
+    {
+      "name": "Number",
+      "description": "Grammatical number: singular or plural."
+    },
+    {
+      "name": "Person",
+      "description": "Grammatical person: 1, 2, 3, or polypersonal (1/2)."
+    },
+    {
+      "name": "Tense",
+      "description": "Grammatical tense: present, past, future."
+    },
+    {
+      "name": "Mood",
+      "description": "Grammatical mood: indicative, imperative, debitive."
+    },
+    {
+      "name": "Voice",
+      "description": "Grammatical voice: active, passive, causative."
+    },
+    {
+      "name": "Aspect",
+      "description": "Grammatical aspect, e.g., iterative."
+    },
+    {
+      "name": "Evidentiality",
+      "description": "Evidential category marking witness status of an event."
+    },
+    {
+      "name": "PossessiveMarking",
+      "description": "Possessive suffix marking person/number of the possessor on a noun."
+    },
+    {
+      "name": "NonFiniteForm",
+      "description": "Non-finite verbal forms such as infinitive, converb, participle, verbal noun."
+    },
+    {
+      "name": "ClauseType",
+      "description": "Type of clause: declarative, interrogative, imperative, negative."
+    },
+    {
+      "name": "MorphologicalTag",
+      "description": "A single tag symbol (e.g., PST, PRS.3SG, PASS, ACC) in the UniParser tagset."
+    },
+    {
+      "name": "Genre",
+      "description": "Text genre (e.g., newspaper/press) affecting statistical preferences."
+    },
+    {
+      "name": "SemanticRole",
+      "description": "Thematic role of an argument (agent, patient, theme, goal, etc.)."
+    }
+  ],
+  "properties": [
+    {
+      "type": "object",
+      "name": "belongsToSentence",
+      "arguments": [
+        "Token",
+        "Sentence"
+      ],
+      "description": "Links a token to the sentence it occurs in."
+    },
+    {
+      "type": "object",
+      "name": "candidateOf",
+      "arguments": [
+        "CandidateAnalysis",
+        "Token"
+      ],
+      "description": "Links a candidate analysis to the token it analyzes."
+    },
+    {
+      "type": "object",
+      "name": "hasLemma",
+      "arguments": [
+        "CandidateAnalysis",
+        "Lemma"
+      ],
+      "description": "Each candidate analysis is associated with a lemma."
+    },
+    {
+      "type": "object",
+      "name": "hasStem",
+      "arguments": [
+        "CandidateAnalysis",
+        "Stem"
+      ],
+      "description": "The stem component of a candidate analysis."
+    },
+    {
+      "type": "object",
+      "name": "hasSuffix",
+      "arguments": [
+        "CandidateAnalysis",
+        "Suffix"
+      ],
+      "description": "A suffix that appears in a candidate analysis."
+    },
+    {
+      "type": "object",
+      "name": "hasTag",
+      "arguments": [
+        "CandidateAnalysis",
+        "MorphologicalTag"
+      ],
+      "description": "A morphological tag belonging to a candidate analysis."
+    },
+    {
+      "type": "datatype",
+      "name": "hasForm",
+      "arguments": [
+        "Token",
+        "string"
+      ],
+      "description": "Surface string form of the token."
+    },
+    {
+      "type": "datatype",
+      "name": "hasPosition",
+      "arguments": [
+        "Token",
+        "integer"
+      ],
+      "description": "Linear position of the token within the sentence."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidatePOS",
+      "arguments": [
+        "CandidateAnalysis",
+        "PartOfSpeech"
+      ],
+      "description": "Candidate part of speech assigned by an analysis."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidateCase",
+      "arguments": [
+        "CandidateAnalysis",
+        "Case"
+      ],
+      "description": "Candidate case feature in an analysis."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidateNumber",
+      "arguments": [
+        "CandidateAnalysis",
+        "Number"
+      ],
+      "description": "Candidate number feature in an analysis."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidatePerson",
+      "arguments": [
+        "CandidateAnalysis",
+        "Person"
+      ],
+      "description": "Candidate person feature in an analysis."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidateTense",
+      "arguments": [
+        "CandidateAnalysis",
+        "Tense"
+      ],
+      "description": "Candidate tense in an analysis."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidateMood",
+      "arguments": [
+        "CandidateAnalysis",
+        "Mood"
+      ],
+      "description": "Candidate mood feature."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidateVoice",
+      "arguments": [
+        "CandidateAnalysis",
+        "Voice"
+      ],
+      "description": "Candidate voice feature (active, passive, causative)."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidateAspect",
+      "arguments": [
+        "CandidateAnalysis",
+        "Aspect"
+      ],
+      "description": "Candidate aspect feature (e.g., iterative)."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidateEvidentiality",
+      "arguments": [
+        "CandidateAnalysis",
+        "Evidentiality"
+      ],
+      "description": "Candidate evidential marking."
+    },
+    {
+      "type": "object",
+      "name": "hasCandidatePossessive",
+      "arguments": [
+        "CandidateAnalysis",
+        "PossessiveMarking"
+      ],
+      "description": "Candidate possessive marking."
+    },
+    {
+      "type": "object",
+      "name": "hasNonFiniteForm",
+      "arguments": [
+        "CandidateAnalysis",
+        "NonFiniteForm"
+      ],
+      "description": "Indicates a non-finite form type for the analysis."
+    },
+    {
+      "type": "unary",
+      "name": "isFinite",
+      "arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "True if the analysis is a finite verb form."
+    },
+    {
+      "type": "unary",
+      "name": "isNegated",
+      "arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "True if the analysis contains NEG marking."
+    },
+    {
+      "type": "datatype",
+      "name": "hasTagString",
+      "arguments": [
+        "CandidateAnalysis",
+        "string"
+      ],
+      "description": "Full tag string of the candidate analysis."
+    },
+    {
+      "type": "datatype",
+      "name": "hasSuffixForm",
+      "arguments": [
+        "Suffix",
+        "string"
+      ],
+      "description": "Surface form of the suffix."
+    },
+    {
+      "type": "datatype",
+      "name": "hasLemmaForm",
+      "arguments": [
+        "Lemma",
+        "string"
+      ],
+      "description": "Citation form of a lemma."
+    },
+    {
+      "type": "unary",
+      "name": "isTransitive",
+      "arguments": [
+        "Lemma"
+      ],
+      "description": "True if the lemma denotes a transitive verb."
+    },
+    {
+      "type": "unary",
+      "name": "isIntransitive",
+      "arguments": [
+        "Lemma"
+      ],
+      "description": "True if the lemma is inherently intransitive."
+    },
+    {
+      "type": "unary",
+      "name": "isMotionVerb",
+      "arguments": [
+        "Lemma"
+      ],
+      "description": "True if the lemma is a verb of motion."
+    },
+    {
+      "type": "unary",
+      "name": "isModalOrControlVerb",
+      "arguments": [
+        "Lemma"
+      ],
+      "description": "True if the lemma is a modal or control verb licensing infinitive complements."
+    },
+    {
+      "type": "unary",
+      "name": "isAnimate",
+      "arguments": [
+        "Token"
+      ],
+      "description": "True if the token's referent is animate."
+    },
+    {
+      "type": "unary",
+      "name": "isInanimate",
+      "arguments": [
+        "Token"
+      ],
+      "description": "True if the token's referent is inanimate."
+    },
+    {
+      "type": "unary",
+      "name": "isVolitional",
+      "arguments": [
+        "Token"
+      ],
+      "description": "True if the subject is a volitional agent."
+    },
+    {
+      "type": "object",
+      "name": "hasSubject",
+      "arguments": [
+        "Sentence",
+        "Token"
+      ],
+      "description": "Links a clause/sentence to its overt subject token."
+    },
+    {
+      "type": "object",
+      "name": "hasPredicate",
+      "arguments": [
+        "Sentence",
+        "Token"
+      ],
+      "description": "Links a clause/sentence to its predicate token."
+    },
+    {
+      "type": "object",
+      "name": "hasTokenPOS",
+      "arguments": [
+        "Token",
+        "PartOfSpeech"
+      ],
+      "description": "Resolved POS of a token."
+    },
+    {
+      "type": "object",
+      "name": "hasTokenCase",
+      "arguments": [
+        "Token",
+        "Case"
+      ],
+      "description": "Resolved case of a token."
+    },
+    {
+      "type": "object",
+      "name": "hasTokenNumber",
+      "arguments": [
+        "Token",
+        "Number"
+      ],
+      "description": "Resolved number of a token."
+    },
+    {
+      "type": "object",
+      "name": "hasTokenPerson",
+      "arguments": [
+        "Token",
+        "Person"
+      ],
+      "description": "Resolved person of a token."
+    },
+    {
+      "type": "object",
+      "name": "hasTokenTense",
+      "arguments": [
+        "Token",
+        "Tense"
+      ],
+      "description": "Resolved tense of a token."
+    },
+    {
+      "type": "object",
+      "name": "governsCase",
+      "arguments": [
+        "Token",
+        "Case"
+      ],
+      "description": "A postposition or verb token governs a particular case on its complement."
+    },
+    {
+      "type": "object",
+      "name": "governedBy",
+      "arguments": [
+        "Token",
+        "Token"
+      ],
+      "description": "Links a complement token to its governor (postposition or verb)."
+    },
+    {
+      "type": "object",
+      "name": "precedes",
+      "arguments": [
+        "Token",
+        "Token"
+      ],
+      "description": "Linear precedence between tokens in the sentence."
+    },
+    {
+      "type": "object",
+      "name": "modifies",
+      "arguments": [
+        "Token",
+        "Token"
+      ],
+      "description": "Indicates that the first token modifies the second."
+    },
+    {
+      "type": "object",
+      "name": "hasClauseType",
+      "arguments": [
+        "Sentence",
+        "ClauseType"
+      ],
+      "description": "Type of the clause."
+    },
+    {
+      "type": "object",
+      "name": "hasGenre",
+      "arguments": [
+        "Sentence",
+        "Genre"
+      ],
+      "description": "Genre context for a sentence."
+    },
+    {
+      "type": "unary",
+      "name": "isClauseInitial",
+      "arguments": [
+        "Token"
+      ],
+      "description": "True if the token is the first in its clause."
+    },
+    {
+      "type": "unary",
+      "name": "isClauseFinal",
+      "arguments": [
+        "Token"
+      ],
+      "description": "True if the token is clause-final."
+    },
+    {
+      "type": "unary",
+      "name": "isMainPredicate",
+      "arguments": [
+        "Token"
+      ],
+      "description": "True if the token functions as main predicate of its clause."
+    },
+    {
+      "type": "object",
+      "name": "inClause",
+      "arguments": [
+        "Token",
+        "Sentence"
+      ],
+      "description": "Token belongs to a given clause."
+    },
+    {
+      "type": "object",
+      "name": "coordinatedWith",
+      "arguments": [
+        "Token",
+        "Token"
+      ],
+      "description": "Indicates two predicates are coordinated."
+    },
+    {
+      "type": "object",
+      "name": "hasNegAuxiliary",
+      "arguments": [
+        "Sentence",
+        "Token"
+      ],
+      "description": "Links a clause to its negative auxiliary token."
+    },
+    {
+      "type": "unary",
+      "name": "hasNegativeAuxiliary",
+      "arguments": [
+        "Sentence"
+      ],
+      "description": "True if the clause contains a negative auxiliary."
+    },
+    {
+      "type": "unary",
+      "name": "hasAuxiliary",
+      "arguments": [
+        "Sentence"
+      ],
+      "description": "True if the clause contains an auxiliary verb."
+    },
+    {
+      "type": "object",
+      "name": "hasSemanticRole",
+      "arguments": [
+        "Token",
+        "SemanticRole"
+      ],
+      "description": "Thematic role assigned to a token."
+    },
+    {
+      "type": "unary",
+      "name": "isInterrogativeClause",
+      "arguments": [
+        "Sentence"
+      ],
+      "description": "True if the clause contains an interrogative pronoun or question particle."
+    },
+    {
+      "type": "unary",
+      "name": "hasOvertThirdPersonSubject",
+      "arguments": [
+        "Sentence"
+      ],
+      "description": "True if the clause has an overt 3rd-person nominal subject."
+    },
+    {
+      "type": "unary",
+      "name": "hasFrequencyAdverb",
+      "arguments": [
+        "Sentence"
+      ],
+      "description": "True if the clause contains a frequency adverb (уно, котькуд, пол)."
+    },
+    {
+      "type": "unary",
+      "name": "hasPresentTimeAdverbial",
+      "arguments": [
+        "Sentence"
+      ],
+      "description": "True if the clause contains a present-time adverbial (e.g., туннэ)."
+    },
+    {
+      "type": "object",
+      "name": "hasPossessor",
+      "arguments": [
+        "Token",
+        "Token"
+      ],
+      "description": "Links a possessed noun to its genitive-marked possessor."
+    },
+    {
+      "type": "unary",
+      "name": "hasNoPossessor",
+      "arguments": [
+        "Token"
+      ],
+      "description": "True if the token has no expressed possessor."
+    },
+    {
+      "type": "unary",
+      "name": "isLexicalizedNoun",
+      "arguments": [
+        "Lemma"
+      ],
+      "description": "True if a form historically derived from a verb is now a lexicalized noun."
+    },
+    {
+      "type": "object",
+      "name": "hasAmbiguityWith",
+      "arguments": [
+        "CandidateAnalysis",
+        "CandidateAnalysis"
+      ],
+      "description": "Marks two analyses as alternatives for the same token."
+    },
+    {
+      "type": "datatype",
+      "name": "endsInSuffix",
+      "arguments": [
+        "Token",
+        "string"
+      ],
+      "description": "True if the token surface ends in a given suffix string."
+    }
+  ],
+  "rules": [
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidatePOS(A, pos) & hasCandidatePerson(A, p) & hasCandidateNumber(A, n) & belongsToSentence(T, C) & hasSubject(C, S) & hasTokenPerson(S, p) & hasTokenNumber(S, n)",
+      "implication_property_type": "unary",
+      "implication_property_name": "SubjectVerbAgreementCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A verbal candidate analysis is agreement-compatible when its person and number features match those of the clause's subject."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidatePerson(A, p12) & belongsToSentence(T, C) & hasSubject(C, S) & hasTokenPerson(S, p3)",
+      "implication_property_type": "unary",
+      "implication_property_name": "AgreementIncompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A 1st/2nd person candidate is incompatible when the clause has an overt 3rd-person nominal subject."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidatePOS(A, pos) & governsCase(T, c) & precedes(N, T) & hasTokenCase(N, c)",
+      "implication_property_type": "unary",
+      "implication_property_name": "PostpositionalGovernmentCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A postpositional analysis is compatible when a nominal preceding the token bears the case governed by the postposition."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateCase(A, acc) & governedBy(T, V) & hasTokenPOS(V, verb) & hasLemma(AV, L) & candidateOf(AV, V) & isTransitive(L)",
+      "implication_property_type": "unary",
+      "implication_property_name": "GovernmentCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "An accusative candidate analysis is compatible when its governing verb is transitive."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateCase(A, ill) & governedBy(T, V) & candidateOf(AV, V) & hasLemma(AV, L) & isMotionVerb(L)",
+      "implication_property_type": "unary",
+      "implication_property_name": "GovernmentCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "An illative candidate analysis is compatible when the governing verb is a motion verb."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & isNegated(A) & belongsToSentence(T, C) & hasNegativeAuxiliary(C)",
+      "implication_property_type": "unary",
+      "implication_property_name": "NegationCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A negated verb form is licensed only when a negative auxiliary is present in the same clause."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasNonFiniteForm(A, ptcp) & hasCandidateVoice(A, active) & precedes(T, N) & modifies(T, N)",
+      "implication_property_type": "unary",
+      "implication_property_name": "AttributiveContextCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "An active participle analysis is preferred when the token immediately precedes and modifies a noun."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasNonFiniteForm(A, ptcp) & hasCandidateVoice(A, passive) & precedes(T, N) & modifies(T, N)",
+      "implication_property_type": "unary",
+      "implication_property_name": "AttributiveContextCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A past passive participle (PTCP.PST) reading of -эм/-ем forms is preferred when the token modifies a following noun."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateEvidentiality(A, evid) & isClauseFinal(T) & belongsToSentence(T, C) & -hasAuxiliary(C)",
+      "implication_property_type": "unary",
+      "implication_property_name": "PredicatePositionCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "An evidential reading of -эм/-ем is preferred when the token is clause-final in a clause lacking an auxiliary."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasNonFiniteForm(A, inf) & precedes(V, T) & candidateOf(AV, V) & hasLemma(AV, L) & isModalOrControlVerb(L)",
+      "implication_property_type": "unary",
+      "implication_property_name": "InfinitiveContextCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "An infinitive analysis is compatible when the token follows a modal or control verb."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasNonFiniteForm(A, cvb) & precedes(T, V) & isFinite(AV) & candidateOf(AV, V) & belongsToSentence(T, C) & belongsToSentence(V, C)",
+      "implication_property_type": "unary",
+      "implication_property_name": "ConverbContextCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A converb analysis is preferred when a finite verb follows the token within the same clause."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateVoice(A, passive) & hasLemma(A, L) & isIntransitive(L)",
+      "implication_property_type": "unary",
+      "implication_property_name": "SemanticallyAnomalousAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A passive analysis is anomalous when the verb lemma is inherently intransitive."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateVoice(A, passive) & hasLemma(A, L) & isTransitive(L) & belongsToSentence(T, C) & hasSubject(C, S) & isInanimate(S)",
+      "implication_property_type": "unary",
+      "implication_property_name": "PassiveContextCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A passive analysis is compatible when the verb is transitive and the surface subject is inanimate."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidatePossessive(A, p3sg) & precedes(N, T) & hasTokenCase(N, gen)",
+      "implication_property_type": "unary",
+      "implication_property_name": "PossessiveContextCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A P.3SG analysis of the -эз/-ез suffix is preferred when a genitive-marked possessor precedes the head noun."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateCase(A, acc) & governedBy(T, V) & candidateOf(AV, V) & hasLemma(AV, L) & isTransitive(L) & hasNoPossessor(T)",
+      "implication_property_type": "unary",
+      "implication_property_name": "GovernmentCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "An accusative reading is preferred when the noun is direct object of a transitive verb and has no possessor."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateMood(A, imp) & belongsToSentence(T, C) & hasOvertThirdPersonSubject(C)",
+      "implication_property_type": "unary",
+      "implication_property_name": "ClauseTypeIncompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "An imperative analysis is incompatible when the clause has an overt 3rd-person subject."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateAspect(A, iter) & belongsToSentence(T, C) & hasFrequencyAdverb(C)",
+      "implication_property_type": "unary",
+      "implication_property_name": "AspectContextCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "An iterative analysis is preferred when frequency adverbs are present in the clause."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateTense(A, prs) & belongsToSentence(T, C) & hasPresentTimeAdverbial(C)",
+      "implication_property_type": "unary",
+      "implication_property_name": "TenseContextCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A present-tense analysis is supported when a present-time adverbial occurs in the clause."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidatePOS(A, adj) & precedes(T, N) & modifies(T, N)",
+      "implication_property_type": "unary",
+      "implication_property_name": "AttributiveContextCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "An attributive analysis of -о/-ё forms is preferred when the token modifies a following noun."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & belongsToSentence(T, C) & coordinatedWith(T, U) & precedes(U, T) & hasCandidateTense(A, x) & hasTokenTense(U, x) & hasCandidatePerson(A, y) & hasTokenPerson(U, y)",
+      "implication_property_type": "unary",
+      "implication_property_name": "CoordinationCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "In coordinated verbal predicates, a candidate is preferred when its tense and person match those of a preceding coordinated verb."
+    },
+    {
+      "fol_expression": "candidateOf(A, T) & hasCandidateMood(A, deb) & isMainPredicate(T) & endsInSuffix(T, \"ono\")",
+      "implication_property_type": "unary",
+      "implication_property_name": "PredicatePositionCompatibleAnalysis",
+      "implication_property_arguments": [
+        "CandidateAnalysis"
+      ],
+      "description": "A debitive analysis is preferred when the -оно form functions as the main predicate of a clause."
+    }
+  ]
+}
