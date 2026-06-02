@@ -82,6 +82,5 @@ Arguments:
 - `--tbox-path`: Путь к TBox JSON (for solar mode)
 - `--tbox-interpreter-path`: Путь к интерпретеру TBox
 - `--output-dir`: Выходной путь для сгенерированных JSON
-- - `--no-cache`: Отключить кэш LLM
-    --debug --limit 10
+- `--no-cache`: Отключить кэш LLM
 ```
