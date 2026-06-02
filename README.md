@@ -22,11 +22,8 @@ GOOGLE_API_KEY=
 | `stage_udmurt_one_sourcegrounded.py` | первый этап: построение TBox и Python-интерпретатора на основе грамматики, CG3 и обучающей выборки |
 | `stage_udmurt_two_sourcegrounded.py` | второй этап: построение ABox для тестовых предложений, запуск интерпретатора и расчет метрик |
 | `udmurt_corpus_parser_sourcegrounded.py` | преобразование корпусных данных и кандидатов UniParser во внутреннее ABox-представление |
-| `build_udmurt_train_profile.py` | построение профиля неоднозначных случаев по обучающей выборке |
-| `evaluate_ambiguous_tokens_v2.py` | дополнительный анализ качества на неоднозначных токенах |
-| `interpreter_claude_fixed.py` | доработанная версия интерпретатора для удмуртской морфологической дизамбигуации |
-| `tbox_claude.json` | пример сгенерированного TBox |
-| `morphdisambig.ttl` | OWL/SWRL-онтология для проверки в Protégé и HermiT |
+| `runs/interpreter_claude_fixed.py` | доработанная версия интерпретатора для удмуртской морфологической дизамбигуации |
+| `runs/tbox_claude.json` | пример сгенерированного TBox |
 | `USAGE.md` | инструкция по проверке онтологии в Protégé/HermiT и загрузке RDF/OWL в Neo4j |
 | `eval/train.csv` | обучающая выборка |
 | `eval/test.csv` | тестовая выборка |
