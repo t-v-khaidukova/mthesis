@@ -1,12 +1,12 @@
-# Structured Ontological Legal Analysis Reasoner (SOLAR)
+# Онтологическая модель морфологической дизамбигуации удмуртского языка
 
-This repository contains the evaluation code for the paper "On Verifiable Legal Reasoning: A Multi-Agent Framework with Formalized Knowledge Representations" accepted at CIKM 2025.
+Репозиторий содержит прототип системы для построения и применения онтологической модели лингвистических знаний на основе функционального графа знаний. Проект является адаптацией двухэтапной архитектуры SOLAR к задаче морфологической разметки малоресурсного языка, а именно удмуртского языка.
 
-SOLAR is a two-stage framework that decomposes legal reasoning into knowledge acquisition (Stage I) and knowledge application (Stage II), demonstrating improved performance on statutory reasoning tasks.
+Основная задача системы — не заменить морфологический анализатор UniParser, а выбрать наиболее подходящий морфологический разбор среди кандидатов, уже предложенных UniParser. Для этого используется онтологический слой: TBox задает общие классы, свойства и правила, а ABox описывает конкретное предложение, его токены, кандидатные анализы и контекстные признаки.
 
-## Setup
+## Настройка окружения
 
-Create `.env` file with your API keys:
+Создайте файл `.env` в корне проекта и добавьте ключ для доступа к модели:
 
 ```
 OPENAI_API_KEY=
@@ -15,73 +15,73 @@ ANTHROPIC_API_KEY=
 GOOGLE_API_KEY=
 ```
 
-## Usage
+## Структура репозитория
 
-### Stage I: Knowledge Acquisition
+| Путь | Назначение |
+|------|------------|
+| `stage_udmurt_one_sourcegrounded.py` | первый этап: построение TBox и Python-интерпретатора на основе грамматики, CG3 и обучающей выборки |
+| `stage_udmurt_two_sourcegrounded.py` | второй этап: построение ABox для тестовых предложений, запуск интерпретатора и расчет метрик |
+| `udmurt_corpus_parser_sourcegrounded.py` | преобразование корпусных данных и кандидатов UniParser во внутреннее ABox-представление |
+| `build_udmurt_train_profile.py` | построение профиля неоднозначных случаев по обучающей выборке |
+| `evaluate_ambiguous_tokens_v2.py` | дополнительный анализ качества на неоднозначных токенах |
+| `interpreter_claude_fixed.py` | доработанная версия интерпретатора для удмуртской морфологической дизамбигуации |
+| `tbox_claude.json` | пример сгенерированного TBox |
+| `morphdisambig.ttl` | OWL/SWRL-онтология для проверки в Protégé и HermiT |
+| `USAGE.md` | инструкция по проверке онтологии в Protégé/HermiT и загрузке RDF/OWL в Neo4j |
+| `eval/train.csv` | обучающая выборка |
+| `eval/test.csv` | тестовая выборка |
+| `eval/udmurt_grammar.txt` | грамматическое описание удмуртского языка |
+| `eval/udmurt_disambiguation.cg3` | правила Constraint Grammar для удмуртского языка |
+| `runs/` | результаты запусков разных моделей, сгенерированные TBox, интерпретаторы и сводные метрики |
+| `solar/` | базовые модули SOLAR, используемые для извлечения и валидации знаний |
 
-Generate TBox ontology and interpreter from legal statute:
+## Использование
+
+### Этап I: Получение знаний
+
+Сгенерируйте онтологию TBox и интерпретатор из грамматического описания удмуртского языка, правил CG3 и примеров из обучающей выборки:
 
 ```bash
-uv run stage_one.py \
-    --statute ./eval/sara_statute.txt \
-    --output-tbox ./tbox.json \
-    --output-py ./interpreter.py \
-    --model gpt-4.1-mini
+uv run python stage_udmurt_one_sourcegrounded.py \
+  --model claude \
+  --statute ./eval/udmurt_grammar.txt \
+  --cg3 ./eval/udmurt_disambiguation.cg3 \
+  --train ./eval/train.csv \
+  --output-dir runs \
+  --output-prefix udmurt \
+  --save-prompt runs/stage1_prompt_claude.txt \
+  --no-cache
 ```
 
 Arguments:
 
-- `--model`: Model to use (gpt-4.1-mini, o1 etc.)
-- `--statute`: Path to input statute text file
-- `--output-tbox`: Output path for generated TBox JSON
-- `--output-py`: Output path for TBox interpreter Python code
-- `--debug`: Enable debug output
-- `--no-cache`: Disable LLM caching
+- `--model`: Модель для использования (gpt-5.1, claude etc.)
+- `--statute`: Путь к входному файлу с грамматическим описанием удмуртского языка
+- `--cg3`: Путь к входному файлу с правилами CG3
+- `--train`: Путь к обучающему набору
+- `--output-dir`: Выходной путь для сгенерированных TBox JSON и кода интерпретатора
+- `--no-cache`: Отключить кэш LLM
 
-## Stage II: Knowledge Application
+## Этап II: Применение знаний
 
-Evaluate different reasoning approaches on the SARA numeric dataset:
+Оцените дизамбигуацию морфологической разметки на тестовом наборе данных:
 
 ```bash
-uv run stage_two.py \
-    --mode solar \
-    --tbox-path ./tbox.json \
-    --tbox-interpreter-path ./interpreter.py \
-    --dataset test \
-    --model gpt-4.1-mini
+uv run python stage_udmurt_two_sourcegrounded.py \
+  --model claude \
+  --corpus ./eval/test.csv \
+  --tbox-path runs/tbox_udmurt_claude.json \
+  --tbox-interpreter-path runs/interpreter_udmurt_claude.py \
+  --output-dir runs \
+  --no-cache
 ```
 
 Arguments:
-- `--model`: Model to evaluate
-- `--mode`: Reasoning approach (`zero-shot`, `chain-of-code`, `solar`)
-- `--dataset`: Dataset split (`train`, `test`)
-- `--success-threshold`: Success tolerance percentage (default: 10.0%)
-- `--limit`: Limit number of test cases (-1 for all)
-- `--debug`: Enable debug output
-- `--tbox-path`: Path to TBox JSON (for solar mode)
-- `--tbox-interpreter-path`: Path to TBox interpreter (for solar mode)
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-# Шаг 1: построить TBox из грамматики (один раз)
-
-```bash
-uv run stage_one.py \
-    --statute ./eval/udmurt_grammar.txt \
-    --output-tbox ./tbox.json \
-    --output-py ./interpreter.py \
-    --model claude-sonnet-4-6
-```
-
-# Шаг 2: запустить оценку
-
-```bash
-uv run stage_two_udmurt.py \
-    --corpus ./eval/corpus.csv \
-    --tbox-path ./tbox.json \
-    --tbox-interpreter-path ./interpreter.py \
-    --model claude-sonnet-4-6 \
+- `--model`: Модель для оценивания
+- `--test`: Тестовый набор данных
+- `--tbox-path`: Путь к TBox JSON (for solar mode)
+- `--tbox-interpreter-path`: Путь к интерпретеру TBox
+- `--output-dir`: Выходной путь для сгенерированных JSON
+- - `--no-cache`: Отключить кэш LLM
     --debug --limit 10
 ```
